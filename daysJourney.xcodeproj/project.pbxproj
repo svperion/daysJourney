@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,7 @@
 		B685775D27A66D6A00E587FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685775C27A66D6A00E587FA /* ContentView.swift */; };
 		B685775F27A66D6B00E587FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B685775E27A66D6B00E587FA /* Assets.xcassets */; };
 		B685776227A66D6B00E587FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B685776127A66D6B00E587FA /* Preview Assets.xcassets */; };
-		B685776727A66D6B00E587FA /* daysJourney WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B685776627A66D6B00E587FA /* daysJourney WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B685776727A66D6B00E587FA /* daysJourney WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B685776627A66D6B00E587FA /* daysJourney WatchKit App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B685776C27A66D6B00E587FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B685776B27A66D6B00E587FA /* Assets.xcassets */; };
 		B685777327A66D6C00E587FA /* daysJourney WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B685777227A66D6C00E587FA /* daysJourney WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B685777827A66D6C00E587FA /* daysJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685777727A66D6C00E587FA /* daysJourneyApp.swift */; };
@@ -21,6 +21,10 @@
 		B685778027A66D6C00E587FA /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685777F27A66D6C00E587FA /* ComplicationController.swift */; };
 		B685778227A66D6C00E587FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B685778127A66D6C00E587FA /* Assets.xcassets */; };
 		B685778527A66D6C00E587FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B685778427A66D6C00E587FA /* Preview Assets.xcassets */; };
+		B68577B027A66E1400E587FA /* daysJourney_macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68577AF27A66E1400E587FA /* daysJourney_macOSApp.swift */; };
+		B68577B227A66E1400E587FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68577B127A66E1400E587FA /* ContentView.swift */; };
+		B68577B427A66E1400E587FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68577B327A66E1400E587FA /* Assets.xcassets */; };
+		B68577B727A66E1400E587FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68577B627A66E1400E587FA /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +89,14 @@
 		B685778427A66D6C00E587FA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B685778627A66D6C00E587FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B685778727A66D6C00E587FA /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		B68577AD27A66E1400E587FA /* daysJourney macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "daysJourney macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B68577AF27A66E1400E587FA /* daysJourney_macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = daysJourney_macOSApp.swift; sourceTree = "<group>"; };
+		B68577B127A66E1400E587FA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B68577B327A66E1400E587FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B68577B627A66E1400E587FA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B68577B827A66E1400E587FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B68577B927A66E1400E587FA /* daysJourney_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = daysJourney_macOS.entitlements; sourceTree = "<group>"; };
+		B68577BF27A66FC400E587FA /* daysJourney.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = daysJourney.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +114,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B68577AA27A66E1400E587FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -111,6 +130,7 @@
 				B685775927A66D6A00E587FA /* daysJourney */,
 				B685776A27A66D6B00E587FA /* daysJourney WatchKit App */,
 				B685777627A66D6C00E587FA /* daysJourney WatchKit Extension */,
+				B68577AE27A66E1400E587FA /* daysJourney macOS */,
 				B685775827A66D6A00E587FA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,6 +141,7 @@
 				B685775727A66D6A00E587FA /* daysJourney.app */,
 				B685776627A66D6B00E587FA /* daysJourney WatchKit App.app */,
 				B685777227A66D6C00E587FA /* daysJourney WatchKit Extension.appex */,
+				B68577AD27A66E1400E587FA /* daysJourney macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,6 +149,7 @@
 		B685775927A66D6A00E587FA /* daysJourney */ = {
 			isa = PBXGroup;
 			children = (
+				B68577BF27A66FC400E587FA /* daysJourney.entitlements */,
 				B685775A27A66D6A00E587FA /* daysJourneyApp.swift */,
 				B685775C27A66D6A00E587FA /* ContentView.swift */,
 				B685775E27A66D6B00E587FA /* Assets.xcassets */,
@@ -174,6 +196,27 @@
 			isa = PBXGroup;
 			children = (
 				B685778427A66D6C00E587FA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B68577AE27A66E1400E587FA /* daysJourney macOS */ = {
+			isa = PBXGroup;
+			children = (
+				B68577AF27A66E1400E587FA /* daysJourney_macOSApp.swift */,
+				B68577B127A66E1400E587FA /* ContentView.swift */,
+				B68577B327A66E1400E587FA /* Assets.xcassets */,
+				B68577B827A66E1400E587FA /* Info.plist */,
+				B68577B927A66E1400E587FA /* daysJourney_macOS.entitlements */,
+				B68577B527A66E1400E587FA /* Preview Content */,
+			);
+			path = "daysJourney macOS";
+			sourceTree = "<group>";
+		};
+		B68577B527A66E1400E587FA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B68577B627A66E1400E587FA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -234,6 +277,23 @@
 			productReference = B685777227A66D6C00E587FA /* daysJourney WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		B68577AC27A66E1400E587FA /* daysJourney macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B68577BA27A66E1400E587FA /* Build configuration list for PBXNativeTarget "daysJourney macOS" */;
+			buildPhases = (
+				B68577A927A66E1400E587FA /* Sources */,
+				B68577AA27A66E1400E587FA /* Frameworks */,
+				B68577AB27A66E1400E587FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "daysJourney macOS";
+			productName = "daysJourney macOS";
+			productReference = B68577AD27A66E1400E587FA /* daysJourney macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -250,6 +310,9 @@
 						CreatedOnToolsVersion = 12.5.1;
 					};
 					B685777127A66D6C00E587FA = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					B68577AC27A66E1400E587FA = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
 				};
@@ -270,6 +333,7 @@
 				B685775627A66D6A00E587FA /* daysJourney */,
 				B685776527A66D6B00E587FA /* daysJourney WatchKit App */,
 				B685777127A66D6C00E587FA /* daysJourney WatchKit Extension */,
+				B68577AC27A66E1400E587FA /* daysJourney macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -301,6 +365,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B68577AB27A66E1400E587FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B68577B727A66E1400E587FA /* Preview Assets.xcassets in Resources */,
+				B68577B427A66E1400E587FA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -325,11 +398,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B68577A927A66E1400E587FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B68577B227A66E1400E587FA /* ContentView.swift in Sources */,
+				B68577B027A66E1400E587FA /* daysJourney_macOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		B685776927A66D6B00E587FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = B685776527A66D6B00E587FA /* daysJourney WatchKit App */;
 			targetProxy = B685776827A66D6B00E587FA /* PBXContainerItemProxy */;
 		};
@@ -547,6 +630,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = daysJourney/daysJourney.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"daysJourney/Preview Content\"";
 				DEVELOPMENT_TEAM = R77ZXS93TP;
@@ -560,6 +644,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.conautonomy.daysJourney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -570,6 +656,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = daysJourney/daysJourney.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"daysJourney/Preview Content\"";
 				DEVELOPMENT_TEAM = R77ZXS93TP;
@@ -583,9 +670,61 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.conautonomy.daysJourney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B68577BB27A66E1400E587FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "daysJourney macOS/daysJourney_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"daysJourney macOS/Preview Content\"";
+				DEVELOPMENT_TEAM = R77ZXS93TP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "daysJourney macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.conautonomy.daysJourney-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B68577BC27A66E1400E587FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "daysJourney macOS/daysJourney_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"daysJourney macOS/Preview Content\"";
+				DEVELOPMENT_TEAM = R77ZXS93TP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "daysJourney macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.conautonomy.daysJourney-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -624,6 +763,15 @@
 			buildConfigurations = (
 				B685779327A66D6C00E587FA /* Debug */,
 				B685779427A66D6C00E587FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B68577BA27A66E1400E587FA /* Build configuration list for PBXNativeTarget "daysJourney macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B68577BB27A66E1400E587FA /* Debug */,
+				B68577BC27A66E1400E587FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
