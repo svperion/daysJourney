@@ -8,18 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var currentIndex = 0
-    private let colors: [Color] = [.red, .blue, .green, .yellow]
 
+    @State private var selection = 1
+    
     var body: some View {
 
-        TabView() {
+        TabView(selection: $selection) {
             Text("First")
+                .tag(0)
             MainPage()
-            Text("Third")
+                .tag(1)
+            CalendarPage()
+                .tag(2)
         }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+    }
+}
+
+struct CalendarPage: View {
+    @State var currentWrite = "Changing Stuff";
+    var body: some View {
+        VStack {
+            
+        }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                .padding(.horizontal)
     }
 }
 
@@ -27,7 +41,6 @@ struct ContentView: View {
 struct MainPage: View {
     @State var currentWrite = "Changing Stuff";
     var body: some View {
-
         VStack {
 
             VStack {
@@ -37,7 +50,7 @@ struct MainPage: View {
                         .padding(.bottom, 10)
 
 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {}, label: {
                     Text("Sun, Jan 30, 2022 >")
                             .font(.headline)
                             .foregroundColor(.gray)
