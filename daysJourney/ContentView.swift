@@ -9,17 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State private var selection = 1
+    @State private var selection = 2
 
     var body: some View {
-
+        
         TabView(selection: $selection) {
             SettingsPage()
                     .tag(0)
-            MainPage()
+            FavouritesPage()
                     .tag(1)
-            CalendarPage()
+            MainPage()
                     .tag(2)
+            DayPage()
+                    .tag(3)
+            CalendarPage()
+                    .tag(4)
         }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
@@ -27,6 +31,17 @@ struct ContentView: View {
 }
 
 struct SettingsPage: View {
+    @State var currentWrite = "Changing Stuff"
+    var body: some View {
+        VStack {
+
+        }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                .padding(.horizontal)
+    }
+}
+
+struct FavouritesPage: View {
     @State var currentWrite = "Changing Stuff"
     var body: some View {
         VStack {
@@ -51,7 +66,7 @@ struct MainPage: View {
                         .padding(.bottom, 10)
 
 
-                Button(action: {}, label: {
+                Button(action: {writeToJson()}, label: {
                     Text("Sun, Jan 30, 2022 >")
                             .font(.headline)
                             .foregroundColor(.gray)
@@ -62,22 +77,40 @@ struct MainPage: View {
 
 
             VStack {
-                Text(currentTime)
-                        .font(.body)
-                        .foregroundColor(.gray)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                Button(action: {currentWrite = readFromJson() ?? "Failed"}, label: {
+                    Text(currentTime + ":")
+                            .font(.body)
+                            .foregroundColor(.gray)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                })
+
 
                 TextEditor(text: $currentWrite)
                         .font(.body)
+                        .padding(.bottom, 35)
 
 
             }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 550, maxHeight: 550, alignment: .topLeading)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150, maxHeight: 630, alignment: .topLeading)
 
 
         }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.horizontal)
+    }
+}
+
+struct DayPage: View {
+    @State var currentWrite = "Changing Stuff"
+    var body: some View {
+        NavigationView {
+            List {
+                Text("Hello World")
+                Text("Hello World")
+                Text("Hello World")
+            }.navigationTitle("todaysJourney")
+        }
+                
     }
 }
 
