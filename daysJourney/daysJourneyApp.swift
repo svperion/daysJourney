@@ -16,47 +16,48 @@ struct daysJourneyApp: App {
     }
 }
 
-func readFromJson() -> String? {
-    let jsonData = readLocalJSONFile(forName: "08_02_2022")
-    if let data = jsonData {
-        if let sampleRecordObj = parse(jsonData: data) {
-            //You can read sampleRecordObj just like below.
-            print("users list: \(sampleRecordObj.date)")
-//            print("firstName:\(sampleRecordObj.date.first?.date ?? "")")
-            return sampleRecordObj.date
-        }
-    }
-    return nil
+func readFromJson() -> String?{
+    parse(jsonData: readLocalFile(forName: "08_02_2022") ?? Data())
 }
 
-func readLocalJSONFile(forName name: String) -> Data? {
+private func readLocalFile(forName name: String) -> Data? {
     do {
-        if let filePath = Bundle.main.path(forResource: name, ofType: "json") {
-            let fileUrl = URL(fileURLWithPath: filePath)
-            let data = try Data(contentsOf: fileUrl)
-            return data
+        if let bundlePath = Bundle.main.path(forResource: name,
+                ofType: "json"),
+           let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
+            return jsonData
         }
     } catch {
-        print("error: \(error)")
+        print(error)
     }
+
     return nil
 }
 
-func parse(jsonData: Data) -> user? {
+private func parse(jsonData: Data) -> String? {
     do {
-        let decodedData = try JSONDecoder().decode(user.self, from: jsonData)
-        return decodedData
+        let decodedData = try JSONDecoder().decode(DaysJournal.self,
+                from: jsonData)
+
+
+        print("reading.....")
+        print("===================================")
+        return "Title: " + decodedData.date
     } catch {
-        print("error: \(error)")
+        print("decode error")
     }
     return nil
 }
 
-struct user: Codable {
+struct DaysJournal: Codable {
     let date: String
-    let journals: String
+    let journals: [MomentJournal]
 }
 
+struct MomentJournal: Codable {
+    let time: UInt
+    let written: String
+}
 
 func writeToJson() {
 
