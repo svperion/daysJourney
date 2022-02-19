@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AEF4430A456FF3C9A28AB5E1 /* FolderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */; };
+		AEF446217C870FFFE848EECE /* FolderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */; };
+		AEF4476FA3C4A436A0FCF1F3 /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44431C0E44483B1987C89 /* JsonUtility.swift */; };
+		AEF44C66BF8DB489024C105D /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44431C0E44483B1987C89 /* JsonUtility.swift */; };
+		AEF44CDC102C4487D051FE45 /* FolderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */; };
+		AEF44F84F9336BBCC0C5FA27 /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44431C0E44483B1987C89 /* JsonUtility.swift */; };
 		B685775B27A66D6A00E587FA /* daysJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685775A27A66D6A00E587FA /* daysJourneyApp.swift */; };
 		B685775D27A66D6A00E587FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685775C27A66D6A00E587FA /* ContentView.swift */; };
 		B685775F27A66D6B00E587FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B685775E27A66D6B00E587FA /* Assets.xcassets */; };
@@ -70,6 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AEF44431C0E44483B1987C89 /* JsonUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonUtility.swift; sourceTree = "<group>"; };
+		AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderStruct.swift; sourceTree = "<group>"; };
 		B685775727A66D6A00E587FA /* daysJourney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daysJourney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B685775A27A66D6A00E587FA /* daysJourneyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = daysJourneyApp.swift; sourceTree = "<group>"; };
 		B685775C27A66D6A00E587FA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -155,6 +163,8 @@
 				B685775E27A66D6B00E587FA /* Assets.xcassets */,
 				B685776327A66D6B00E587FA /* Info.plist */,
 				B685776027A66D6B00E587FA /* Preview Content */,
+				AEF44431C0E44483B1987C89 /* JsonUtility.swift */,
+				AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */,
 			);
 			path = daysJourney;
 			sourceTree = "<group>";
@@ -383,6 +393,8 @@
 			files = (
 				B685775D27A66D6A00E587FA /* ContentView.swift in Sources */,
 				B685775B27A66D6A00E587FA /* daysJourneyApp.swift in Sources */,
+				AEF44C66BF8DB489024C105D /* JsonUtility.swift in Sources */,
+				AEF4430A456FF3C9A28AB5E1 /* FolderStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +407,8 @@
 				B685778027A66D6C00E587FA /* ComplicationController.swift in Sources */,
 				B685777827A66D6C00E587FA /* daysJourneyApp.swift in Sources */,
 				B685777E27A66D6C00E587FA /* NotificationView.swift in Sources */,
+				AEF44F84F9336BBCC0C5FA27 /* JsonUtility.swift in Sources */,
+				AEF446217C870FFFE848EECE /* FolderStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +418,8 @@
 			files = (
 				B68577B227A66E1400E587FA /* ContentView.swift in Sources */,
 				B68577B027A66E1400E587FA /* daysJourney_macOSApp.swift in Sources */,
+				AEF4476FA3C4A436A0FCF1F3 /* JsonUtility.swift in Sources */,
+				AEF44CDC102C4487D051FE45 /* FolderStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
