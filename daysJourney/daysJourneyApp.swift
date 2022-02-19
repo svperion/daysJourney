@@ -15,3 +15,10 @@ struct daysJourneyApp: App {
         }
     }
 }
+
+func getCurrentTime() -> String {
+    let today = Date()
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "h:mm:ss a"
+    return dateFormatter.string(from: today).lowercased()
+}

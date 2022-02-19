@@ -10,36 +10,37 @@ import SwiftUI
 struct ContentView: View {
 
     @State private var selection = 1
-    
+
     var body: some View {
 
         TabView(selection: $selection) {
-            Text("First")
-                .tag(0)
+            SettingsPage()
+                    .tag(0)
             MainPage()
-                .tag(1)
+                    .tag(1)
             CalendarPage()
-                .tag(2)
+                    .tag(2)
         }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
     }
 }
 
-struct CalendarPage: View {
-    @State var currentWrite = "Changing Stuff";
+struct SettingsPage: View {
+    @State var currentWrite = "Changing Stuff"
     var body: some View {
         VStack {
-            
+
         }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.horizontal)
     }
 }
 
-
 struct MainPage: View {
-    @State var currentWrite = "Changing Stuff";
+    @State var currentWrite = "Changing Stuff"
+    let currentTime = getCurrentTime()
+
     var body: some View {
         VStack {
 
@@ -59,21 +60,19 @@ struct MainPage: View {
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
                     .padding(.bottom)
 
-            ScrollView {
-                VStack {
-                    Text("7:52 pm:")
-                            .font(.body)
-                            .foregroundColor(.gray)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
 
-                    TextEditor(text: $currentWrite)
-                            .font(.body)
+            VStack {
+                Text(currentTime)
+                        .font(.body)
+                        .foregroundColor(.gray)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
 
-                }
-                        .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: .infinity, minHeight: 700, maxHeight: .infinity)
+                TextEditor(text: $currentWrite)
+                        .font(.body)
+
 
             }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 500, maxHeight: 550, alignment: .topLeading)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 550, maxHeight: 550, alignment: .topLeading)
 
 
         }
@@ -82,6 +81,16 @@ struct MainPage: View {
     }
 }
 
+struct CalendarPage: View {
+    @State var currentWrite = "Changing Stuff"
+    var body: some View {
+        VStack {
+
+        }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                .padding(.horizontal)
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
