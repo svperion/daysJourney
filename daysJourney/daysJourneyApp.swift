@@ -11,7 +11,6 @@ import SwiftUI
 struct daysJourneyApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView(){  }
             ContentView()
         }
     }

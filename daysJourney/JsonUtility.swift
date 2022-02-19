@@ -91,9 +91,3 @@ func getCurrentTime() -> String {
     dateFormatter.dateFormat = "h:mm:ss a"
     return dateFormatter.string(from: today).lowercased()
 }
-
-private func getDocumentsDirectory() -> [URL] {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-
-    return paths
-}
