@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		AEF4430A456FF3C9A28AB5E1 /* FolderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */; };
+		AEF4434AB5C485948EE8BA7F /* SavingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */; };
+		AEF4443D99A39890F08BB0F7 /* SavingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */; };
 		AEF446217C870FFFE848EECE /* FolderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */; };
 		AEF4476FA3C4A436A0FCF1F3 /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44431C0E44483B1987C89 /* JsonUtility.swift */; };
+		AEF44B118A68F1A54AEE6623 /* SavingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */; };
 		AEF44C66BF8DB489024C105D /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44431C0E44483B1987C89 /* JsonUtility.swift */; };
 		AEF44CDC102C4487D051FE45 /* FolderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */; };
 		AEF44F84F9336BBCC0C5FA27 /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44431C0E44483B1987C89 /* JsonUtility.swift */; };
@@ -77,6 +80,7 @@
 
 /* Begin PBXFileReference section */
 		AEF44431C0E44483B1987C89 /* JsonUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonUtility.swift; sourceTree = "<group>"; };
+		AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingUtil.swift; sourceTree = "<group>"; };
 		AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderStruct.swift; sourceTree = "<group>"; };
 		B685775727A66D6A00E587FA /* daysJourney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daysJourney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B685775A27A66D6A00E587FA /* daysJourneyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = daysJourneyApp.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				B685776027A66D6B00E587FA /* Preview Content */,
 				AEF44431C0E44483B1987C89 /* JsonUtility.swift */,
 				AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */,
+				AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */,
 			);
 			path = daysJourney;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				B685775B27A66D6A00E587FA /* daysJourneyApp.swift in Sources */,
 				AEF44C66BF8DB489024C105D /* JsonUtility.swift in Sources */,
 				AEF4430A456FF3C9A28AB5E1 /* FolderStruct.swift in Sources */,
+				AEF44B118A68F1A54AEE6623 /* SavingUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +415,7 @@
 				B685777E27A66D6C00E587FA /* NotificationView.swift in Sources */,
 				AEF44F84F9336BBCC0C5FA27 /* JsonUtility.swift in Sources */,
 				AEF446217C870FFFE848EECE /* FolderStruct.swift in Sources */,
+				AEF4443D99A39890F08BB0F7 /* SavingUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +427,7 @@
 				B68577B027A66E1400E587FA /* daysJourney_macOSApp.swift in Sources */,
 				AEF4476FA3C4A436A0FCF1F3 /* JsonUtility.swift in Sources */,
 				AEF44CDC102C4487D051FE45 /* FolderStruct.swift in Sources */,
+				AEF4434AB5C485948EE8BA7F /* SavingUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
