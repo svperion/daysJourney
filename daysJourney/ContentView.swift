@@ -11,7 +11,7 @@ private let currentTimeTuple = getCurrentTime()
 
 struct ContentView: View {
 
-    @State private var selection = 3
+    @State var selection = 3
     var body: some View {
 
 //        let sceneDel = UISceneDelegate()
@@ -69,7 +69,6 @@ struct MainPage: View {
                         .foregroundColor(.purple)
                         .padding(.bottom, 10)
 
-
                 Button(action: {}, label: {
                     Text(currentTimeTuple.dateStr + " >")
                             .font(.headline)
@@ -109,6 +108,7 @@ struct MainPage: View {
 }
 
 struct DayPage: View {
+    let daysJournalTimes = getAllJournalTime(date: currentTimeTuple.dateJournal)
 
     var body: some View {
         VStack {
@@ -128,7 +128,12 @@ struct DayPage: View {
             }
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
                     .padding(.bottom)
+            List {
 
+                ForEach(daysJournalTimes){ moment in
+                    Text(moment.id)
+                }
+            }
 
         }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)

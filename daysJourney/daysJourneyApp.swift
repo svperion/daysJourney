@@ -24,3 +24,16 @@ func saveToDisk(userWriting: String, date: Date){
 //    JsonUtility(dateJournal: date).readFromJson() ?? "Failed to get journal......"
 //}
 
+func getAllJournalTime(date: Date) -> [TodayMenu] {
+    let journalTimes = JournalSaver(dateJournal: date).getListOfJournalTime()
+    var todayMenus = [TodayMenu]()
+    for singleTime in journalTimes {
+        todayMenus.append(TodayMenu(id: singleTime))
+    }
+    return todayMenus
+}
+
+struct TodayMenu: Codable, Equatable, Identifiable{
+    let id: String
+}
+
