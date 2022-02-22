@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AEF4430A456FF3C9A28AB5E1 /* FolderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */; };
-		AEF4434AB5C485948EE8BA7F /* SavingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */; };
-		AEF4443D99A39890F08BB0F7 /* SavingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */; };
-		AEF446217C870FFFE848EECE /* FolderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */; };
-		AEF4476FA3C4A436A0FCF1F3 /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44431C0E44483B1987C89 /* JsonUtility.swift */; };
-		AEF44B118A68F1A54AEE6623 /* SavingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */; };
-		AEF44C66BF8DB489024C105D /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44431C0E44483B1987C89 /* JsonUtility.swift */; };
-		AEF44CDC102C4487D051FE45 /* FolderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */; };
-		AEF44F84F9336BBCC0C5FA27 /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44431C0E44483B1987C89 /* JsonUtility.swift */; };
+		AEF4410E7C61E2875A610AD8 /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
+		AEF443C3D73ACB980A0A281E /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
+		AEF44488030C615C90107E6C /* FolderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */; };
+		AEF447F970BF8D8962C72AC0 /* FolderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */; };
+		AEF44DF37EA4A426FEA04F3B /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
+		AEF44EBDB426ABA7B14A6300 /* FolderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */; };
 		B685775B27A66D6A00E587FA /* daysJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685775A27A66D6A00E587FA /* daysJourneyApp.swift */; };
 		B685775D27A66D6A00E587FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685775C27A66D6A00E587FA /* ContentView.swift */; };
 		B685775F27A66D6B00E587FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B685775E27A66D6B00E587FA /* Assets.xcassets */; };
@@ -79,9 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AEF44431C0E44483B1987C89 /* JsonUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonUtility.swift; sourceTree = "<group>"; };
-		AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavingUtil.swift; sourceTree = "<group>"; };
-		AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderStruct.swift; sourceTree = "<group>"; };
+		AEF44242173778FDE13ED4F1 /* JournalSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalSaver.swift; sourceTree = "<group>"; };
+		AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderStructure.swift; sourceTree = "<group>"; };
 		B685775727A66D6A00E587FA /* daysJourney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daysJourney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B685775A27A66D6A00E587FA /* daysJourneyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = daysJourneyApp.swift; sourceTree = "<group>"; };
 		B685775C27A66D6A00E587FA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,6 +132,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AEF44CC6B0CACA6A48FCF39E /* SavingUtils */ = {
+			isa = PBXGroup;
+			children = (
+				AEF44242173778FDE13ED4F1 /* JournalSaver.swift */,
+				AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */,
+			);
+			path = SavingUtils;
+			sourceTree = "<group>";
+		};
 		B685774E27A66D6A00E587FA = {
 			isa = PBXGroup;
 			children = (
@@ -167,9 +172,7 @@
 				B685775E27A66D6B00E587FA /* Assets.xcassets */,
 				B685776327A66D6B00E587FA /* Info.plist */,
 				B685776027A66D6B00E587FA /* Preview Content */,
-				AEF44431C0E44483B1987C89 /* JsonUtility.swift */,
-				AEF44E550FB97D44B1A2B5C9 /* FolderStruct.swift */,
-				AEF44DF4BDDC13904DD40923 /* SavingUtil.swift */,
+				AEF44CC6B0CACA6A48FCF39E /* SavingUtils */,
 			);
 			path = daysJourney;
 			sourceTree = "<group>";
@@ -398,9 +401,8 @@
 			files = (
 				B685775D27A66D6A00E587FA /* ContentView.swift in Sources */,
 				B685775B27A66D6A00E587FA /* daysJourneyApp.swift in Sources */,
-				AEF44C66BF8DB489024C105D /* JsonUtility.swift in Sources */,
-				AEF4430A456FF3C9A28AB5E1 /* FolderStruct.swift in Sources */,
-				AEF44B118A68F1A54AEE6623 /* SavingUtil.swift in Sources */,
+				AEF4410E7C61E2875A610AD8 /* JournalSaver.swift in Sources */,
+				AEF447F970BF8D8962C72AC0 /* FolderStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,9 +415,8 @@
 				B685778027A66D6C00E587FA /* ComplicationController.swift in Sources */,
 				B685777827A66D6C00E587FA /* daysJourneyApp.swift in Sources */,
 				B685777E27A66D6C00E587FA /* NotificationView.swift in Sources */,
-				AEF44F84F9336BBCC0C5FA27 /* JsonUtility.swift in Sources */,
-				AEF446217C870FFFE848EECE /* FolderStruct.swift in Sources */,
-				AEF4443D99A39890F08BB0F7 /* SavingUtil.swift in Sources */,
+				AEF44DF37EA4A426FEA04F3B /* JournalSaver.swift in Sources */,
+				AEF44488030C615C90107E6C /* FolderStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,9 +426,8 @@
 			files = (
 				B68577B227A66E1400E587FA /* ContentView.swift in Sources */,
 				B68577B027A66E1400E587FA /* daysJourney_macOSApp.swift in Sources */,
-				AEF4476FA3C4A436A0FCF1F3 /* JsonUtility.swift in Sources */,
-				AEF44CDC102C4487D051FE45 /* FolderStruct.swift in Sources */,
-				AEF4434AB5C485948EE8BA7F /* SavingUtil.swift in Sources */,
+				AEF443C3D73ACB980A0A281E /* JournalSaver.swift in Sources */,
+				AEF44EBDB426ABA7B14A6300 /* FolderStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,7 +579,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
 			};
 			name = Debug;
 		};
@@ -604,7 +604,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
 			};
 			name = Release;
 		};
@@ -624,7 +624,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
 			};
 			name = Debug;
 		};
@@ -645,7 +645,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
 			};
 			name = Release;
 		};
@@ -660,7 +660,7 @@
 				DEVELOPMENT_TEAM = R77ZXS93TP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = daysJourney/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -686,7 +686,7 @@
 				DEVELOPMENT_TEAM = R77ZXS93TP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = daysJourney/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,7 +720,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.conautonomy.daysJourney-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -746,7 +746,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.conautonomy.daysJourney-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

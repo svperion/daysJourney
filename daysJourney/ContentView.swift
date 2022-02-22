@@ -7,12 +7,17 @@
 
 import SwiftUI
 
+private let currentTimeTuple = getCurrentTime()
+
 struct ContentView: View {
 
-    @State private var selection = 2
-
+    @State private var selection = 3
     var body: some View {
-        
+
+//        let sceneDel = UISceneDelegate()
+//        sceneDel.sceneWillResignActive{
+//
+//        }
         TabView(selection: $selection) {
             SettingsPage()
                     .tag(0)
@@ -31,7 +36,6 @@ struct ContentView: View {
 }
 
 struct SettingsPage: View {
-    @State var currentWrite = "Changing Stuff"
     var body: some View {
         VStack {
 
@@ -42,7 +46,6 @@ struct SettingsPage: View {
 }
 
 struct FavouritesPage: View {
-    @State var currentWrite = "Changing Stuff"
     var body: some View {
         VStack {
 
@@ -54,7 +57,8 @@ struct FavouritesPage: View {
 
 struct MainPage: View {
     @State var currentWrite = "Changing Stuff"
-    let currentTimeTuple = getCurrentTime()
+    @FocusState var textEditorFocus: Bool
+
 
     var body: some View {
         VStack {
@@ -66,8 +70,8 @@ struct MainPage: View {
                         .padding(.bottom, 10)
 
 
-                Button(action: {saveToJson(userWriting: currentWrite, date: currentTimeTuple.dateJournal)}, label: {
-                    Text("Sun, Jan 30, 2022 >")
+                Button(action: {}, label: {
+                    Text(currentTimeTuple.dateStr + " >")
                             .font(.headline)
                             .foregroundColor(.gray)
                 })
@@ -88,8 +92,12 @@ struct MainPage: View {
                 TextEditor(text: $currentWrite)
                         .font(.body)
                         .padding(.bottom, 35)
-
-
+                        .focused($textEditorFocus)
+                        .onChange(of: textEditorFocus) { textEditorFocus in
+                            if !textEditorFocus {
+                                saveToDisk(userWriting: currentWrite, date: currentTimeTuple.dateJournal)
+                            }
+                        }
             }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150, maxHeight: 630, alignment: .topLeading)
 
@@ -101,21 +109,34 @@ struct MainPage: View {
 }
 
 struct DayPage: View {
-    @State var currentWrite = "Changing Stuff"
+
     var body: some View {
-        NavigationView {
-            List {
-                Text("Hello World")
-                Text("Hello World")
-                Text("Hello World")
-            }.navigationTitle("todaysJourney")
+        VStack {
+
+            VStack {
+                Text("todaysJourney")
+                        .font(.title)
+                        .foregroundColor(.pink)
+                        .padding(.bottom, 10)
+
+
+                Button(action: {}, label: {
+                    Text(currentTimeTuple.dateStr)
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                })
+            }
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
+                    .padding(.bottom)
+
+
         }
-                
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                .padding(.horizontal)
     }
 }
 
 struct CalendarPage: View {
-    @State var currentWrite = "Changing Stuff"
     var body: some View {
         VStack {
 

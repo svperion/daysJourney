@@ -16,8 +16,8 @@ struct daysJourneyApp: App {
     }
 }
 
-func saveToJson(userWriting: String, date: Date){
-    JsonUtility(dateJournal: date).makeCustomJson(userWriting: userWriting);
+func saveToDisk(userWriting: String, date: Date){
+    JournalSaver(dateJournal: date).saveJournalToDisk(userWriting: userWriting);
 }
 
 //func getSavedJournal(date: Date) -> String {

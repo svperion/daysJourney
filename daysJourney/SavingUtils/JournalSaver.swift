@@ -4,7 +4,7 @@
 
 import Foundation
 
-class JsonUtility {
+class JournalSaver {
 
     private let fileManager = FileManager.default
 
@@ -16,17 +16,19 @@ class JsonUtility {
     init(dateJournal: Date) {
         mTimeUnix = Int(dateJournal.timeIntervalSince1970)
 
-        let dates = getDateArray(dateJournal: dateJournal)
-        mYear = dates.dateStrs[0]
-        mMonth = dates.dateStrs[1]
-        mDay = dates.dateStrs[2]
+        let dates = getDateAsString(dateJournal: dateJournal)
+        mYear = dates.dateStrArray[0]
+        mMonth = dates.dateStrArray[1]
+        mDay = dates.dateStrArray[2]
 
         mFullDate = dates.dateStr
     }
 
+    func readJournalFromDisk() -> (){
 
+    }
 
-    func makeCustomJson(userWriting: String) {
+    func saveJournalToDisk(userWriting: String) {
         // gets the appropriate folder path and whether a JSON already exists for the given date;
         // nil means some unknown error was encountered
         if let jsonPathExists = getFolderStructure(username: mUserName, year: mYear, month: mMonth, day: mDay) {
@@ -76,20 +78,6 @@ class JsonUtility {
         }
     }
 
-//    func writeToJson() {
-//
-//        let jsonExample = getSampleJson()
-//
-//        if let jsonPath = getFolderStructure(username: "orionneguse", year: "2022", month: "02", day: "08")?.filePath {
-//            do {
-//                try jsonExample.write(to: jsonPath, atomically: true, encoding: .utf8)
-//            } catch {
-//                print("Failed to Write to Disk")
-//            }
-//        }
-//
-//    }
-
     private func getSaveAsCodable(filePath: URL) -> DaysJournal? {
         do {
             let savedData = try Data(contentsOf: filePath)
@@ -120,17 +108,19 @@ class JsonUtility {
     }
 }
 
-private func getDateArray(dateJournal: Date) -> (dateStrs: [String], dateStr: String){
+private func getDateAsString(dateJournal: Date) -> (dateStrArray: [String], dateStr: String){
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
     let dateStr = formatter.string(from: dateJournal)
     return (dateStr.components(separatedBy: "-"), dateStr)
 }
 
-func getCurrentTime() -> (timeStr: String, dateJournal: Date) {
+func getCurrentTime() -> (timeStr: String, dateStr: String, dateJournal: Date) {
     let thisMoment = Date()
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "h:mm:ss a"
     let timeStr = dateFormatter.string(from: thisMoment).lowercased()
-    return (timeStr: timeStr, dateJournal: thisMoment)
+    dateFormatter.dateFormat = "EE, MMM dd, yyyy"
+    let dateStr = dateFormatter.string(from: thisMoment)
+    return (timeStr: timeStr, dateStr: dateStr, dateJournal: thisMoment)
 }
