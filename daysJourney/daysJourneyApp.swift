@@ -16,8 +16,8 @@ struct daysJourneyApp: App {
     }
 }
 
-func saveToJson(){
-    JsonUtility().writeToJson()
+func saveToJson(userWriting: String, timeUnix: Int){
+    JsonUtility().makeCustomJson(userWriting:  userWriting, mTimeUnix: timeUnix);
 }
 
 func getSavedJournal() -> String {

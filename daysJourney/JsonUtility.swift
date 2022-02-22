@@ -10,31 +10,30 @@ class JsonUtility {
 
     private let mTimeUnix: Int
 
-    private let mYear: String
-    private let mMonth: String
-    private let mDay: String
+    private let mUserName: String = "orionneguse"
+    private let mYear: String, mMonth: String, mDay: String,  mFullDate: String
 
-    init(timeUnix: Int) {
-        mTimeUnix = timeUnix
+    init(dateJournal: Date) {
+        mTimeUnix = Int(dateJournal.timeIntervalSince1970)
 
-        let dateStrs = getDateArray(timeUnix: timeUnix)
+        let dates = getDateArray(dateJournal: dateJournal)
+        mYear = dates.dateStrs[0]
+        mMonth = dates.dateStrs[1]
+        mDay = dates.dateStrs[2]
 
-        mYear = dateStrs[0]
-        mMonth = dateStrs[1]
-        mDay = dateStrs[2]
+        mFullDate = dates.dateStr
     }
 
 
 
-    func makeCustomJson(userWriting: String, timeUnix: Int) {
+    func makeCustomJson(userWriting: String) {
         // gets the appropriate folder path and whether a JSON already exists for the given date;
         // nil means some unknown error was encountered
-        if let jsonPathExists = getFolderStructure(username: "orionneguse", year: "2022", month: "02", day: "22") {
-
+        if let jsonPathExists = getFolderStructure(username: mUserName, year: mYear, month: mMonth, day: mDay) {
             if jsonPathExists.doesExist {
-                writeToExistingJson(filePath: jsonPathExists.filePath, userWriting: userWriting, timeUnix: timeUnix)
+                writeToExistingJson(filePath: jsonPathExists.filePath, userWriting: userWriting)
             } else {
-                writeToNewJson(filePath: jsonPathExists.filePath, userWriting: userWriting, timeUnix: timeUnix)
+                writeToNewJson(filePath: jsonPathExists.filePath, userWriting: userWriting)
             }
 
         } else {
@@ -42,11 +41,11 @@ class JsonUtility {
         }
     }
 
-    private func writeToNewJson(filePath: URL, userWriting: String, timeUnix: Int) {
+    private func writeToNewJson(filePath: URL, userWriting: String) {
 
-        let jsonMoment = [MomentJournal(time: timeUnix, written: userWriting)]
+        let jsonMoment = [MomentJournal(time: mTimeUnix, written: userWriting)]
 
-        let jsonJournal = DaysJournal(date: "2022-02-22", journals: jsonMoment)
+        let jsonJournal = DaysJournal(date: mFullDate, journals: jsonMoment)
 
         do {
             let data = try JSONEncoder().encode(jsonJournal)
@@ -63,9 +62,9 @@ class JsonUtility {
 
     }
 
-    private func writeToExistingJson(filePath: URL, userWriting: String, timeUnix: Int) {
+    private func writeToExistingJson(filePath: URL, userWriting: String) {
         if var editJournal = getSaveAsCodable(filePath: filePath) {
-            editJournal.journals.append(MomentJournal(time: timeUnix, written: userWriting))
+            editJournal.journals.append(MomentJournal(time: mTimeUnix, written: userWriting))
 
             do {
                 let data = try JSONEncoder().encode(editJournal)
@@ -121,13 +120,11 @@ class JsonUtility {
     }
 }
 
-private func getDateArray(timeUnix: Int) -> [String]{
-    let date = Date(timeIntervalSince1970: Double(timeUnix))
+private func getDateArray(dateJournal: Date) -> (dateStrs: [String], dateStr: String){
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
-    let dateStr = formatter.string(from: date)
-
-    return dateStr.components(separatedBy: "-")
+    let dateStr = formatter.string(from: dateJournal)
+    return (dateStr.components(separatedBy: "-"), dateStr)
 }
 
 func getCurrentTime() -> (timeStr: String, dateJournal: Date) {

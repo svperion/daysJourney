@@ -54,7 +54,7 @@ struct FavouritesPage: View {
 
 struct MainPage: View {
     @State var currentWrite = "Changing Stuff"
-    let currentTime = getCurrentTime()
+    let currentTimeTuple = getCurrentTime()
 
     var body: some View {
         VStack {
@@ -66,7 +66,7 @@ struct MainPage: View {
                         .padding(.bottom, 10)
 
 
-                Button(action: {saveToJson()}, label: {
+                Button(action: {saveToJson(userWriting: currentWrite)}, label: {
                     Text("Sun, Jan 30, 2022 >")
                             .font(.headline)
                             .foregroundColor(.gray)
@@ -78,7 +78,7 @@ struct MainPage: View {
 
             VStack {
                 Button(action: {currentWrite = getSavedJournal()}, label: {
-                    Text(currentTime + ":")
+                    Text(currentTimeTuple.timeStr + ":")
                             .font(.body)
                             .foregroundColor(.gray)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
