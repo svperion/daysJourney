@@ -16,11 +16,11 @@ struct daysJourneyApp: App {
     }
 }
 
-func saveToJson(userWriting: String, timeUnix: Int){
-    JsonUtility().makeCustomJson(userWriting:  userWriting, mTimeUnix: timeUnix);
+func saveToJson(userWriting: String, date: Date){
+    JsonUtility(dateJournal: date).makeCustomJson(userWriting: userWriting);
 }
 
-func getSavedJournal() -> String {
-    JsonUtility().readFromJson() ?? "Failed to get journal......"
-}
+//func getSavedJournal(date: Date) -> String {
+//    JsonUtility(dateJournal: date).readFromJson() ?? "Failed to get journal......"
+//}
 

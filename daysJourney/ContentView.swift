@@ -66,7 +66,7 @@ struct MainPage: View {
                         .padding(.bottom, 10)
 
 
-                Button(action: {saveToJson(userWriting: currentWrite)}, label: {
+                Button(action: {saveToJson(userWriting: currentWrite, date: currentTimeTuple.dateJournal)}, label: {
                     Text("Sun, Jan 30, 2022 >")
                             .font(.headline)
                             .foregroundColor(.gray)
@@ -77,7 +77,7 @@ struct MainPage: View {
 
 
             VStack {
-                Button(action: {currentWrite = getSavedJournal()}, label: {
+                Button(action: {}, label: {
                     Text(currentTimeTuple.timeStr + ":")
                             .font(.body)
                             .foregroundColor(.gray)
