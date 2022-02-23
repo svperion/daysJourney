@@ -25,15 +25,25 @@ func saveToDisk(userWriting: String, date: Date){
 //}
 
 func getAllJournalTime(date: Date) -> [TodayMenu] {
-    let journalTimes = JournalSaver(dateJournal: date).getListOfJournalTime()
+    let journalTuple = JournalSaver(dateJournal: date).getListOfJournalTime()
+    let momentsJournal = journalTuple.moments
+
     var todayMenus = [TodayMenu]()
-    for singleTime in journalTimes {
-        todayMenus.append(TodayMenu(id: singleTime))
+    for singleMoment in momentsJournal {
+        todayMenus.append(getMomentsAsTodayMenu(moment: singleMoment, date: date))
     }
     return todayMenus
 }
 
+private func getMomentsAsTodayMenu(moment: MomentJournal, date: Date) -> TodayMenu {
+    let datesTuple = getDateTimeData(date: date)
+    return TodayMenu(id: String(moment.time), date: datesTuple.dateStr, time: datesTuple.timeStr, written: moment.written)
+}
+
 struct TodayMenu: Codable, Equatable, Identifiable{
     let id: String
+    let date: String
+    let time: String
+    let written: String
 }
 

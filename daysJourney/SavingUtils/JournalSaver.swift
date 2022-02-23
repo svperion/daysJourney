@@ -38,16 +38,16 @@ class JournalSaver {
         }
     }
 
-    func getListOfJournalTime() -> [String] {
+    func getListOfJournalTime() -> (timeStrs: [String], moments: [MomentJournal] ){
         var listOfTimes = [String]()
         if let moments: [MomentJournal] = getMomentsCodable(filePath: mJournalPath){
             for singleMoment in moments {
                 let time = Date(timeIntervalSince1970: Double(singleMoment.time))
                 listOfTimes.append(getTimeAsString(time: time))
             }
-            return listOfTimes
+            return (timeStrs: listOfTimes, moments: moments)
         }
-        return ["Failed"]
+        return (timeStrs: ["Failed"], moments: [MomentJournal(time: 0, written: "")])
     }
 
     func readJournalFromDisk() {
@@ -157,10 +157,13 @@ private func getDateAsString(dateJournal: Date) -> (dateStrArray: [String], date
 }
 
 func getCurrentTime() -> (timeStr: String, dateStr: String, dateJournal: Date) {
-    let thisMoment = Date()
-    let timeStr = getTimeAsString(time: thisMoment)
-    let dateStr = getDateAsString(date: thisMoment)
-    return (timeStr: timeStr, dateStr: dateStr, dateJournal: thisMoment)
+    getDateTimeData(date: Date())
+}
+
+func getDateTimeData(date: Date) -> (timeStr: String, dateStr: String, dateJournal: Date){
+    let timeStr = getTimeAsString(time: date)
+    let dateStr = getDateAsString(date: date)
+    return (timeStr: timeStr, dateStr: dateStr, dateJournal: date)
 }
 
 private func getDateAsString(date: Date) -> String{
