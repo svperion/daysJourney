@@ -27,7 +27,7 @@ class JournalSaver {
 
         mFullDate = dates.dateStr
 
-        if let jsonPathExists = getFolderStructure(username: mUserName, year: mYear, month: mMonth, day: mDay) {
+        if let jsonPathExists = getFolderStructure(username: "nineerrr", year: "2012", month: "11", day: "23") {
             mJournalPath = jsonPathExists.filePath
             mJournalExists = jsonPathExists.doesExist
             mFileSuccess = true
@@ -36,6 +36,7 @@ class JournalSaver {
             mJournalExists = false
             mFileSuccess = false
         }
+
     }
 
     func getListOfJournalTime() -> (timeStrs: [String], moments: [MomentJournal] ){
@@ -83,6 +84,7 @@ class JournalSaver {
     }
 
     private func writeToDisk(filePath: URL, daysJournal: DaysJournal) {
+
         do {
             let data = try JSONEncoder().encode(daysJournal)
             let journalString = String(data: data, encoding: .utf8)

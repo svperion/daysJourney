@@ -10,9 +10,12 @@
 		AEF4410E7C61E2875A610AD8 /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
 		AEF443C3D73ACB980A0A281E /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
 		AEF44488030C615C90107E6C /* FolderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */; };
+		AEF444D86C581CB3323D00CF /* JournalUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF440DA993C8904AE348867 /* JournalUpdater.swift */; };
 		AEF447F970BF8D8962C72AC0 /* FolderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */; };
+		AEF44CEB2B607CD496C3A8FD /* JournalUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF440DA993C8904AE348867 /* JournalUpdater.swift */; };
 		AEF44DF37EA4A426FEA04F3B /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
 		AEF44EBDB426ABA7B14A6300 /* FolderStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */; };
+		AEF44F7A6CD43366B883FC48 /* JournalUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF440DA993C8904AE348867 /* JournalUpdater.swift */; };
 		B685775B27A66D6A00E587FA /* daysJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685775A27A66D6A00E587FA /* daysJourneyApp.swift */; };
 		B685775D27A66D6A00E587FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685775C27A66D6A00E587FA /* ContentView.swift */; };
 		B685775F27A66D6B00E587FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B685775E27A66D6B00E587FA /* Assets.xcassets */; };
@@ -76,6 +79,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AEF440DA993C8904AE348867 /* JournalUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalUpdater.swift; sourceTree = "<group>"; };
 		AEF44242173778FDE13ED4F1 /* JournalSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalSaver.swift; sourceTree = "<group>"; };
 		AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderStructure.swift; sourceTree = "<group>"; };
 		B685775727A66D6A00E587FA /* daysJourney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daysJourney.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +141,7 @@
 			children = (
 				AEF44242173778FDE13ED4F1 /* JournalSaver.swift */,
 				AEF44AE4FC3B09A0D41A39C9 /* FolderStructure.swift */,
+				AEF440DA993C8904AE348867 /* JournalUpdater.swift */,
 			);
 			path = SavingUtils;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				B685775B27A66D6A00E587FA /* daysJourneyApp.swift in Sources */,
 				AEF4410E7C61E2875A610AD8 /* JournalSaver.swift in Sources */,
 				AEF447F970BF8D8962C72AC0 /* FolderStructure.swift in Sources */,
+				AEF444D86C581CB3323D00CF /* JournalUpdater.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +423,7 @@
 				B685777E27A66D6C00E587FA /* NotificationView.swift in Sources */,
 				AEF44DF37EA4A426FEA04F3B /* JournalSaver.swift in Sources */,
 				AEF44488030C615C90107E6C /* FolderStructure.swift in Sources */,
+				AEF44CEB2B607CD496C3A8FD /* JournalUpdater.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +435,7 @@
 				B68577B027A66E1400E587FA /* daysJourney_macOSApp.swift in Sources */,
 				AEF443C3D73ACB980A0A281E /* JournalSaver.swift in Sources */,
 				AEF44EBDB426ABA7B14A6300 /* FolderStructure.swift in Sources */,
+				AEF44F7A6CD43366B883FC48 /* JournalUpdater.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

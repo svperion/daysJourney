@@ -19,13 +19,13 @@ struct ContentView: View {
 //
 //        }
         TabView(selection: $selection) {
-            SettingsPage()
+            AllPage()
                     .tag(0)
-            FavouritesPage()
+            FavePage()
                     .tag(1)
-            MainPage()
+            DaysPage()
                     .tag(2)
-            DayPage()
+            TodayPage()
                     .tag(3)
 
         }
@@ -34,9 +34,15 @@ struct ContentView: View {
     }
 }
 
-struct SettingsPage: View {
+struct AllPage: View {
     var body: some View {
         VStack {
+            HStack{
+                Button(action: {}){
+                    Image("cog_grey").renderingMode(.original)
+                }.padding()
+                TopHeader(headerStr: "allJourneys", headerColor: Color.cyan, alignment: Alignment.trailing)
+            }
 
         }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
@@ -44,24 +50,29 @@ struct SettingsPage: View {
     }
 }
 
-struct FavouritesPage: View {
+struct FavePage: View {
     var body: some View {
         VStack {
-
+            HStack{
+                TopHeader(headerStr: "faveJourneys", headerColor: Color.red, alignment: Alignment.leading)
+                Button(action: {}){
+                    Image("cog_grey").renderingMode(.original)
+                }.padding()
+            }
         }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.horizontal)
     }
 }
 
-struct MainPage: View {
+struct DaysPage: View {
     @State var currentWrite = "Changing Stuff"
     @FocusState var textEditorFocus: Bool
 
     var body: some View {
         VStack {
 
-            TopHeader(headerStr: "daysJourney", headerColor: Color.purple, alignment: Alignment.trailing)
+            DatedHeader(headerStr: "daysJourney", headerColor: Color.purple, alignment: Alignment.trailing)
 
             VStack {
                 Button(action: {}, label: {
@@ -92,13 +103,14 @@ struct MainPage: View {
     }
 }
 
-struct DayPage: View {
+// displays all the journals from the same day
+struct TodayPage: View {
     let daysJournalTimes = getAllJournalTime(date: currentTimeTuple.dateJournal)
     @State var presentingModal = false
     var body: some View {
         VStack {
 
-            TopHeader(headerStr: "todaysJourney", headerColor: Color.pink, alignment: Alignment.leading)
+            DatedHeader(headerStr: "todaysJourney", headerColor: Color.green, alignment: Alignment.leading)
                     .padding(.horizontal)
 
             List {
@@ -154,15 +166,35 @@ struct JournalModal: View {
     }
 }
 
-struct CalendarModal: View {
+struct SettingsModal: View {
 
     var body: some View {
-        Text("")
-        DatePicker(selection: /*@START_MENU_TOKEN@*/.constant(Date())/*@END_MENU_TOKEN@*/, label: { /*@START_MENU_TOKEN@*/Text("Date")/*@END_MENU_TOKEN@*/ })
+        Text("Settings")
+
     }
 }
 
-private struct TopHeader: View {
+struct CalendarModal: View {
+
+    @State var dateSel = Date()
+
+    var body: some View {
+        VStack {
+            Text("Please Select a Date")
+                    .font(.headline)
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 10)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+            DatePicker("Date", selection: $dateSel)
+                    .datePickerStyle(.graphical)
+
+        }.padding(10)
+
+
+    }
+}
+
+private struct DatedHeader: View {
     let headerStr: String
     let headerColor: Color
     let alignment: Alignment
@@ -171,22 +203,33 @@ private struct TopHeader: View {
 
     var body: some View {
         VStack {
-            Text(headerStr)
-                    .font(.largeTitle)
-                    .foregroundColor(headerColor)
-                    .padding(.bottom, 10)
-                    .frame(minWidth: 0, maxWidth: .infinity, alignment: alignment)
+            TopHeader(headerStr: headerStr, headerColor: headerColor, alignment: alignment)
 
             Button(currentTimeTuple.dateStr + " >") {
                 self.presentingModal = true
-            }.sheet(isPresented: $presentingModal) {
+            }
+                    .sheet(isPresented: $presentingModal) {
                         CalendarModal()
                     }
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                        .padding(.bottom, 10)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: alignment)
+                    .font(.headline)
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 10)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: alignment)
         }
+                .frame(minWidth: 0, maxWidth: .infinity, alignment: alignment)
+    }
+}
+
+private struct TopHeader: View {
+    let headerStr: String
+    let headerColor: Color
+    let alignment: Alignment
+
+    var body: some View {
+        Text(headerStr)
+                .font(.largeTitle)
+                .foregroundColor(headerColor)
+                .padding(.bottom, 10)
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: alignment)
     }
 }
