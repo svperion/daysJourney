@@ -8,45 +8,80 @@ import Foundation
 
 private let fileManager = FileManager.default
 
+class FolderManager {
+    let FIRST_FOLDER: String
+    let SECOND_FOLDER: String
+    let THIRD_FOLDER: String
+    let FOURTH_FOLDER: String
+    let FINAL_FILE: String
 
+    init(username: String, year: String, month: String, day: String){
+        FIRST_FOLDER = "\(username).daysJourney"
+        SECOND_FOLDER = "\(username).allJourneys"
+        THIRD_FOLDER = "\(year).dj"
+        FOURTH_FOLDER = "\(month)_\(year).dj"
+        FINAL_FILE = "\(day)_\(month)_\(year).json"
+    }
 
-func getFolderStructure(username: String, year: String, month: String, day: String) -> (filePath: URL, doesExist: Bool)? {
-    let FIRST_FOLDER = "\(username).daysJourney"
-    let SECOND_FOLDER = "\(username).allJourneys"
-    let THIRD_FOLDER = "\(year).dj"
-    let FOURTH_FOLDER = "\(month)_\(year).dj"
-    let FINAL_FILE = "\(day)_\(month)_\(year)"
+    init(username: String){
+        FIRST_FOLDER = "\(username).daysJourney"
+        SECOND_FOLDER = "\(username).allJourneys"
+        FINAL_FILE = "allJournals.json"
 
-    let folderNames = [FIRST_FOLDER, SECOND_FOLDER, THIRD_FOLDER, FOURTH_FOLDER]
+        THIRD_FOLDER = ""
+        FOURTH_FOLDER = ""
+    }
 
-    if let documentDir = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-        var folderDir = URL(fileURLWithPath: documentDir.path)
+    func getAllJournalFolder() -> (filePath: URL, doesExist: Bool)? {
+        let folderNames = [FIRST_FOLDER, SECOND_FOLDER]
+        return checkFile(folderNames: folderNames, fileName: FINAL_FILE)
+    }
 
-        for folder in folderNames {
-            folderDir = folderDir.appendingPathComponent(folder)
-            checkAndMakeDir(filePath: folderDir)
+    func getJourneysStructure() -> (filePath: URL, doesExist: Bool)? {
+        let folderNames = [FIRST_FOLDER, SECOND_FOLDER, THIRD_FOLDER, FOURTH_FOLDER]
+        return checkFile(folderNames: folderNames, fileName: FINAL_FILE)
+    }
+
+    private func checkFile(folderNames: [String], fileName: String) -> (filePath: URL, doesExist: Bool)? {
+        if let folderDir = checkFolders(folderNames: folderNames){
+            let finalFilePath = folderDir.appendingPathComponent(fileName)
+
+            if (doesFolderExist(filePath: finalFilePath)) {
+                return (filePath: finalFilePath, doesExist: true)
+            } else {
+                return (filePath: finalFilePath, doesExist: false)
+            }
         }
+        return nil
+    }
 
-        let finalFilePath = folderDir.appendingPathComponent(FINAL_FILE).appendingPathExtension("json")
+    private func checkFolders(folderNames: [String]) -> URL?{
 
-        if (doesFolderExist(filePath: finalFilePath)) {
-            return (filePath: finalFilePath, doesExist: true)
-        } else {
-            return (filePath: finalFilePath, doesExist: false)
+        if let documentDir = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            var folderDir = URL(fileURLWithPath: documentDir.path)
+
+            for folder in folderNames {
+                folderDir = folderDir.appendingPathComponent(folder)
+                checkAndMakeDir(filePath: folderDir)
+            }
+
+            return folderDir
+        }
+        return nil
+    }
+
+    private func checkAndMakeDir(filePath: URL) {
+        if !doesFolderExist(filePath: filePath) {
+            do {
+                try fileManager.createDirectory(atPath: filePath.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                checkAndMakeDir(filePath: filePath)
+            }
         }
     }
-    return nil
+
 }
 
-private func checkAndMakeDir(filePath: URL) {
-    if !doesFolderExist(filePath: filePath) {
-        do {
-            try fileManager.createDirectory(atPath: filePath.path, withIntermediateDirectories: true, attributes: nil)
-        } catch {
-            checkAndMakeDir(filePath: filePath)
-        }
-    }
-}
 
 func doesFolderExist(filePath: URL) -> Bool {
     fileManager.fileExists(atPath: filePath.path)

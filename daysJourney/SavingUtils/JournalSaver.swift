@@ -27,7 +27,8 @@ class JournalSaver {
 
         mFullDate = dates.dateStr
 
-        if let jsonPathExists = getFolderStructure(username: "nineerrr", year: "2012", month: "11", day: "23") {
+        if let jsonPathExists = FolderManager(username: "nineerrr", year: "2012", month: "11", day: "23")
+                .getJourneysStructure() {
             mJournalPath = jsonPathExists.filePath
             mJournalExists = jsonPathExists.doesExist
             mFileSuccess = true
