@@ -9,21 +9,21 @@ import SwiftUI
 
 private let currentTimeTuple = getCurrentTime()
 
+// TODO: ADD LOGIN FUNCTIONALITY
+
 struct ContentView: View {
 
+    @StateObject var observeModel = ObserveModel()
     @State var selection = 2
     var body: some View {
 
-//        let sceneDel = UISceneDelegate()
-//        sceneDel.sceneWillResignActive{
-//
-//        }
         TabView(selection: $selection) {
             AllPage()
                     .tag(0)
             FavePage()
                     .tag(1)
             DaysPage()
+                    .environmentObject(observeModel)
                     .tag(2)
             TodayPage()
                     .tag(3)
@@ -31,16 +31,25 @@ struct ContentView: View {
         }
                 .tabViewStyle(.page(indexDisplayMode: .always))
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
+
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                    saveToDisk(userWriting: observeModel.currentWrite, date: currentTimeTuple.dateJournal)
+                    print("Lost Focus")
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                    print("Gain Focus")
+                }
     }
 }
 
 struct AllPage: View {
     var body: some View {
         VStack {
-            HStack{
-                Button(action: {}){
+            HStack {
+                Button(action: {}) {
                     Image("cog_grey").renderingMode(.original)
-                }.padding()
+                }
+                        .padding()
                 TopHeader(headerStr: "allJourneys", headerColor: Color.cyan, alignment: Alignment.trailing)
             }
 
@@ -53,11 +62,12 @@ struct AllPage: View {
 struct FavePage: View {
     var body: some View {
         VStack {
-            HStack{
+            HStack {
                 TopHeader(headerStr: "faveJourneys", headerColor: Color.red, alignment: Alignment.leading)
-                Button(action: {}){
+                Button(action: {}) {
                     Image("cog_grey").renderingMode(.original)
-                }.padding()
+                }
+                        .padding()
             }
         }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
@@ -65,9 +75,9 @@ struct FavePage: View {
     }
 }
 
+// displays the current journal that the user is writing
 struct DaysPage: View {
-    @State var currentWrite = "Changing Stuff"
-    @FocusState var textEditorFocus: Bool
+    @EnvironmentObject private var observeModel: ObserveModel
 
     var body: some View {
         VStack {
@@ -84,19 +94,11 @@ struct DaysPage: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
 
 
-                TextEditor(text: $currentWrite)
+                TextEditor(text: $observeModel.currentWrite)
                         .font(.body)
                         .padding(.bottom, 35)
-                        .focused($textEditorFocus)
-                        .onChange(of: textEditorFocus) { textEditorFocus in
-                            if !textEditorFocus {
-                                saveToDisk(userWriting: currentWrite, date: currentTimeTuple.dateJournal)
-                            }
-                        }
             }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150, maxHeight: 630, alignment: .leading)
-
-
         }
                 .padding(.horizontal)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
@@ -105,11 +107,11 @@ struct DaysPage: View {
 
 // displays all the journals from the same day
 struct TodayPage: View {
+    @EnvironmentObject private var observeModel: ObserveModel
     let daysJournalTimes = getAllJournalTime(date: currentTimeTuple.dateJournal)
     @State var presentingModal = false
     var body: some View {
         VStack {
-
             DatedHeader(headerStr: "todaysJourney", headerColor: Color.green, alignment: Alignment.leading)
                     .padding(.horizontal)
 
@@ -188,7 +190,8 @@ struct CalendarModal: View {
             DatePicker("Date", selection: $dateSel)
                     .datePickerStyle(.graphical)
 
-        }.padding(10)
+        }
+                .padding(10)
 
 
     }

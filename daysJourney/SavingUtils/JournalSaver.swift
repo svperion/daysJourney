@@ -4,31 +4,21 @@
 
 import Foundation
 
-class JournalSaver {
+class AllJournalSaver {
+    internal let fileManager = FileManager.default
+    internal let mTimeUnix: Int
 
-    private let fileManager = FileManager.default
+    internal let mJournalPath: URL
+    internal let mJournalExists: Bool
+    internal let mFileSuccess: Bool
 
-    private let mTimeUnix: Int
+    internal let mFolderManager: FolderManager
 
-    private let mUserName: String = "orionneguse"
-    private let mYear: String, mMonth: String, mDay: String, mFullDate: String
-
-    private let mJournalPath: URL
-    private let mJournalExists: Bool
-    private let mFileSuccess: Bool
-
-    init(dateJournal: Date) {
+    required internal init(dateJournal: Date, folderManager: FolderManager) {
         mTimeUnix = Int(dateJournal.timeIntervalSince1970)
+        mFolderManager = folderManager
 
-        let dates = getDateAsString(dateJournal: dateJournal)
-        mYear = dates.dateStrArray[0]
-        mMonth = dates.dateStrArray[1]
-        mDay = dates.dateStrArray[2]
-
-        mFullDate = dates.dateStr
-
-        if let jsonPathExists = FolderManager(username: "nineerrr", year: "2012", month: "11", day: "23")
-                .getJourneysStructure() {
+        if let jsonPathExists = mFolderManager.getJournalFiles() {
             mJournalPath = jsonPathExists.filePath
             mJournalExists = jsonPathExists.doesExist
             mFileSuccess = true
@@ -37,19 +27,74 @@ class JournalSaver {
             mJournalExists = false
             mFileSuccess = false
         }
+    }
+
+    convenience init() {
+        self.init(dateJournal: Date(), folderManager: FolderManager())
+    }
+
+    private func addToAllJournals() throws {
+//        if mFileSuccess {
+//            do {
+//                let allJournals = AllJournalsCoda(userName: <#T##String##Swift.String#>, allJournals: <#T##[EachJournalsCoda]##[daysJourney.JournalSaver.EachJournalsCoda]#>)
+//                let data = try JSONEncoder().encode(allJournals)
+//                let allJournalStr = String(data: data, encoding: .utf8)
+//                try allJournalStr?.write(to: mJournalPath, atomically: true, encoding: .utf8)
+//
+//            } catch {
+//                print("Failed to Write to Disk")
+//            }
+//
+//        }
+    }
+
+    private func writeToExistAllJournals() {
 
     }
 
-    func getListOfJournalTime() -> (timeStrs: [String], moments: [MomentJournal] ){
+    private struct AllJournalsCoda: Codable {
+        let userName: String
+        let allJournals: [EachJournalsCoda]
+    }
+
+    private struct EachJournalsCoda: Codable {
+        let time: Int
+        let writtenHint: String
+    }
+
+}
+
+class JournalSaver: AllJournalSaver {
+
+    private let mUserName: String = "orionneguse"
+    private let mYear: String, mMonth: String, mDay: String, mFullDate: String
+
+    required init(dateJournal: Date, folderManager: FolderManager) {
+        let dates = getDateAsString(dateJournal: dateJournal)
+        mYear = dates.dateStrArray[0]
+        mMonth = dates.dateStrArray[1]
+        mDay = dates.dateStrArray[2]
+
+        mFullDate = dates.dateStr
+        super.init(dateJournal: dateJournal,
+                folderManager: FolderManager(username: mUserName, year: mYear, month: mMonth, day: mDay))
+    }
+
+    convenience init(dateJournal: Date){
+        self.init(dateJournal: dateJournal,
+                folderManager: FolderManager())
+    }
+
+    func getListOfJournalTime() -> (timeStrs: [String], moments: [MomentJournalCoda]) {
         var listOfTimes = [String]()
-        if let moments: [MomentJournal] = getMomentsCodable(filePath: mJournalPath){
+        if let moments: [MomentJournalCoda] = getMomentsCodable(filePath: mJournalPath) {
             for singleMoment in moments {
                 let time = Date(timeIntervalSince1970: Double(singleMoment.time))
                 listOfTimes.append(getTimeAsString(time: time))
             }
             return (timeStrs: listOfTimes, moments: moments)
         }
-        return (timeStrs: ["Failed"], moments: [MomentJournal(time: 0, written: "")])
+        return (timeStrs: ["Failed"], moments: [MomentJournalCoda(time: 0, written: "")])
     }
 
     func readJournalFromDisk() {
@@ -60,45 +105,44 @@ class JournalSaver {
         // gets the appropriate folder path and whether a JSON already exists for the given date;
         // nil means some unknown error was encountered
         if doesJournalExist() {
-            writeToExistingJson(filePath: mJournalPath, userWriting: userWriting)
+            writeToExistingJournal(filePath: mJournalPath, userWriting: userWriting)
         } else if mFileSuccess {
-            writeToNewJson(filePath: mJournalPath, userWriting: userWriting)
+            writeToNewJournal(filePath: mJournalPath, userWriting: userWriting)
         }
 
     }
 
-
-    private func writeToNewJson(filePath: URL, userWriting: String) {
-
-        let newMoment = [MomentJournal(time: mTimeUnix, written: userWriting)]
-        let newJournal = DaysJournal(date: mFullDate, journals: newMoment)
-
-        writeToDisk(filePath: filePath, daysJournal: newJournal)
-    }
-
-    private func writeToExistingJson(filePath: URL, userWriting: String) {
+    private func writeToExistingJournal(filePath: URL, userWriting: String) {
         if var editJournal = getJournalCodable(filePath: filePath) {
-            editJournal.journals.append(MomentJournal(time: mTimeUnix, written: userWriting))
+            editJournal.journals.append(MomentJournalCoda(time: mTimeUnix, written: userWriting))
 
             writeToDisk(filePath: filePath, daysJournal: editJournal)
         }
     }
 
-    private func writeToDisk(filePath: URL, daysJournal: DaysJournal) {
+    private func writeToNewJournal(filePath: URL, userWriting: String) {
 
+        let newMoments = [MomentJournalCoda(time: mTimeUnix, written: userWriting)]
+        let newJournal = DaysJournalCoda(date: mFullDate, journals: newMoments)
+
+        writeToDisk(filePath: filePath, daysJournal: newJournal)
+    }
+
+    private func writeToDisk(filePath: URL, daysJournal: DaysJournalCoda) {
         do {
             let data = try JSONEncoder().encode(daysJournal)
             let journalString = String(data: data, encoding: .utf8)
             try journalString?.write(to: filePath, atomically: true, encoding: .utf8)
+
         } catch {
             print("Failed to Write to Disk")
         }
     }
 
-    private func getSingleMoment(filePath: URL, timeUnix: Int) -> MomentJournal? {
-        if let moments = getMomentsCodable(filePath: filePath){
+    private func getSingleMoment(filePath: URL, timeUnix: Int) -> MomentJournalCoda? {
+        if let moments = getMomentsCodable(filePath: filePath) {
             for singleMoment in moments {
-                if (singleMoment.time == timeUnix){
+                if (singleMoment.time == timeUnix) {
                     return singleMoment
                 }
             }
@@ -106,17 +150,17 @@ class JournalSaver {
         return nil
     }
 
-    private func getMomentsCodable(filePath: URL) -> [MomentJournal]? {
-        if let daysJournal: DaysJournal = getJournalCodable(filePath: filePath) {
+    private func getMomentsCodable(filePath: URL) -> [MomentJournalCoda]? {
+        if let daysJournal: DaysJournalCoda = getJournalCodable(filePath: filePath) {
             return daysJournal.journals
         }
         return nil
     }
 
-    private func getJournalCodable(filePath: URL) -> DaysJournal? {
+    private func getJournalCodable(filePath: URL) -> DaysJournalCoda? {
         do {
             let savedData = try Data(contentsOf: filePath)
-            let savedJournal: DaysJournal = try JSONDecoder().decode(DaysJournal.self, from: savedData)
+            let savedJournal: DaysJournalCoda = try JSONDecoder().decode(DaysJournalCoda.self, from: savedData)
             return savedJournal
         } catch {
             return nil
@@ -127,15 +171,11 @@ class JournalSaver {
         mFileSuccess && mJournalExists
     }
 
-    private struct DaysJournal: Codable {
+    private struct DaysJournalCoda: Codable {
         let date: String
-        var journals: [MomentJournal]
+        var journals: [MomentJournalCoda]
     }
 
-    private struct AllJournal: Codable {
-        let userName: String
-        let allJournals: [Int]
-    }
 
     private func getSampleJson() -> String {
         """
@@ -147,7 +187,7 @@ class JournalSaver {
     }
 }
 
-struct MomentJournal: Codable {
+struct MomentJournalCoda: Codable {
     let time: Int
     let written: String
 }
@@ -163,19 +203,19 @@ func getCurrentTime() -> (timeStr: String, dateStr: String, dateJournal: Date) {
     getDateTimeData(date: Date())
 }
 
-func getDateTimeData(date: Date) -> (timeStr: String, dateStr: String, dateJournal: Date){
+func getDateTimeData(date: Date) -> (timeStr: String, dateStr: String, dateJournal: Date) {
     let timeStr = getTimeAsString(time: date)
     let dateStr = getDateAsString(date: date)
     return (timeStr: timeStr, dateStr: dateStr, dateJournal: date)
 }
 
-private func getDateAsString(date: Date) -> String{
+private func getDateAsString(date: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "EE, MMM dd, yyyy"
     return dateFormatter.string(from: date)
 }
 
-private func getTimeAsString(time: Date) -> String{
+private func getTimeAsString(time: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "h:mm:ss a"
     return dateFormatter.string(from: time).lowercased()

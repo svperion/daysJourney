@@ -12,17 +12,22 @@ struct daysJourneyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+//                    .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+//                        print("Lost Focus")
+//                    }
+//                    .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+//                        print("Gain Focus")
+//                    }
+
         }
     }
 }
 
 
-
-func saveToDisk(userWriting: String, date: Date){
+func saveToDisk(userWriting: String, date: Date) {
     print(NSHomeDirectory())
     JournalSaver(dateJournal: date).saveJournalToDisk(userWriting: userWriting);
 }
-
 
 func getAllJournalTime(date: Date) -> [TodayMenu] {
     let journalTuple = JournalSaver(dateJournal: date).getListOfJournalTime()
@@ -35,15 +40,26 @@ func getAllJournalTime(date: Date) -> [TodayMenu] {
     return todayMenus
 }
 
-private func getMomentsAsTodayMenu(moment: MomentJournal, date: Date) -> TodayMenu {
+private func getMomentsAsTodayMenu(moment: MomentJournalCoda, date: Date) -> TodayMenu {
     let datesTuple = getDateTimeData(date: date)
     return TodayMenu(id: String(moment.time), date: datesTuple.dateStr, time: datesTuple.timeStr, written: moment.written)
 }
 
-struct TodayMenu: Codable, Equatable, Identifiable{
+struct TodayMenu: Codable, Equatable, Identifiable {
     let id: String
     let date: String
     let time: String
     let written: String
+}
+
+class ObserveModel: ObservableObject {
+    // holds the user's current writing
+    @Published var currentWrite = "Changing Stuff"
+
+    init(){
+
+    }
+
+
 }
 

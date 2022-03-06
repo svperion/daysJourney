@@ -6,47 +6,43 @@ import Foundation
 
 // folder name counting starts with the outermost folder (parent of all)
 
-private let fileManager = FileManager.default
 
 class FolderManager {
-    let FIRST_FOLDER: String
-    let SECOND_FOLDER: String
-    let THIRD_FOLDER: String
-    let FOURTH_FOLDER: String
-    let FINAL_FILE: String
+    private let fileManager = FileManager.default
 
-    init(username: String, year: String, month: String, day: String){
-        FIRST_FOLDER = "\(username).daysJourney"
-        SECOND_FOLDER = "\(username).allJourneys"
-        THIRD_FOLDER = "\(year).dj"
-        FOURTH_FOLDER = "\(month)_\(year).dj"
-        FINAL_FILE = "\(day)_\(month)_\(year).json"
+    // TODO: make all folder name variables a single String array
+    let mFolderNames: [String]
+    private let mFinalFile: String
+
+    // used to check or create the a journal file
+    init(username: String, year: String, month: String, day: String) {
+        let FIRST_FOLDER = "allJournals.daysJourney"
+        let SECOND_FOLDER = "allJournals.daysJourney"
+        let THIRD_FOLDER = "\(username).allJourneys"
+        let FOURTH_FOLDER = "\(year).dj"
+        let FIFTH_FOLDER = "\(month)_\(year).dj"
+        mFinalFile = "\(day)_\(month)_\(year).json"
+        mFolderNames = [FIRST_FOLDER, SECOND_FOLDER, THIRD_FOLDER, FOURTH_FOLDER, FIFTH_FOLDER]
     }
 
-    init(username: String){
-        FIRST_FOLDER = "\(username).daysJourney"
-        SECOND_FOLDER = "\(username).allJourneys"
-        FINAL_FILE = "allJournals.json"
+    // used to check or create the allJournals file
+    init() {
+        let FIRST_FOLDER = "allJournals.daysJourney"
+        let SECOND_FOLDER = "allJournals.daysJourney"
+        mFinalFile = "allJournals.json"
 
-        THIRD_FOLDER = ""
-        FOURTH_FOLDER = ""
+        mFolderNames = [FIRST_FOLDER, SECOND_FOLDER]
     }
 
-    func getAllJournalFolder() -> (filePath: URL, doesExist: Bool)? {
-        let folderNames = [FIRST_FOLDER, SECOND_FOLDER]
-        return checkFile(folderNames: folderNames, fileName: FINAL_FILE)
-    }
-
-    func getJourneysStructure() -> (filePath: URL, doesExist: Bool)? {
-        let folderNames = [FIRST_FOLDER, SECOND_FOLDER, THIRD_FOLDER, FOURTH_FOLDER]
-        return checkFile(folderNames: folderNames, fileName: FINAL_FILE)
+    func getJournalFiles() -> (filePath: URL, doesExist: Bool)? {
+        checkFile(folderNames: mFolderNames, fileName: mFinalFile)
     }
 
     private func checkFile(folderNames: [String], fileName: String) -> (filePath: URL, doesExist: Bool)? {
-        if let folderDir = checkFolders(folderNames: folderNames){
+        if let folderDir = checkFolders(folderNames: folderNames) {
             let finalFilePath = folderDir.appendingPathComponent(fileName)
 
-            if (doesFolderExist(filePath: finalFilePath)) {
+            if (FolderManager.doesFolderExist(filePath: finalFilePath)) {
                 return (filePath: finalFilePath, doesExist: true)
             } else {
                 return (filePath: finalFilePath, doesExist: false)
@@ -55,7 +51,7 @@ class FolderManager {
         return nil
     }
 
-    private func checkFolders(folderNames: [String]) -> URL?{
+    private func checkFolders(folderNames: [String]) -> URL? {
 
         if let documentDir = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
             var folderDir = URL(fileURLWithPath: documentDir.path)
@@ -71,7 +67,7 @@ class FolderManager {
     }
 
     private func checkAndMakeDir(filePath: URL) {
-        if !doesFolderExist(filePath: filePath) {
+        if !FolderManager.doesFolderExist(filePath: filePath) {
             do {
                 try fileManager.createDirectory(atPath: filePath.path, withIntermediateDirectories: true, attributes: nil)
             } catch {
@@ -80,16 +76,20 @@ class FolderManager {
         }
     }
 
+    static func doesFolderExist(filePath: URL) -> Bool {
+        FileManager.default.fileExists(atPath: filePath.path)
+    }
+
+    static func getDocumentsDirectory() -> [URL] {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
+        return paths
+    }
+
 }
 
 
-func doesFolderExist(filePath: URL) -> Bool {
-    fileManager.fileExists(atPath: filePath.path)
-}
 
-func getDocumentsDirectory() -> [URL] {
-    let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
 
-    return paths
-}
+
 
