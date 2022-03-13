@@ -4,7 +4,7 @@
 
 import Foundation
 
-func saveToDisk(userWriting: String, date: Date) {
+func saveJournal(userWriting: String, date: Date) {
     if !isStrBlank(text: userWriting) {
         JournalSaver(dateJournal: date).saveJournalToDisk(userWriting: userWriting)
     }

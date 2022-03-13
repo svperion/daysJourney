@@ -5,14 +5,14 @@
 import Foundation
 
 class AllJournalSaver {
-    internal let fileManager = FileManager.default
-    internal let mTimeUnix: Int
+    fileprivate let fileManager = FileManager.default
+    fileprivate let mTimeUnix: Int
 
-    internal let mJournalPath: URL
-    internal let mJournalExists: Bool
-    internal let mFileSuccess: Bool
+    fileprivate let mJournalPath: URL
+    fileprivate let mJournalExists: Bool
+    fileprivate let mFileSuccess: Bool
 
-    internal let mFolderManager: FolderManager
+    fileprivate let mFolderManager: FolderManager
 
     required internal init(dateJournal: Date, folderManager: FolderManager) {
         mTimeUnix = Int(dateJournal.timeIntervalSince1970)
@@ -70,7 +70,7 @@ class JournalSaver: AllJournalSaver {
     private let mYear: String, mMonth: String, mDay: String, mFullDate: String
 
     required init(dateJournal: Date, folderManager: FolderManager) {
-        let dates = getDateAsString(dateJournal: dateJournal)
+        let dates = JournalSaver.getDateAsString(dateJournal: dateJournal)
         mYear = dates.dateStrArray[0]
         mMonth = dates.dateStrArray[1]
         mDay = dates.dateStrArray[2]
@@ -80,7 +80,7 @@ class JournalSaver: AllJournalSaver {
                 folderManager: FolderManager(username: mUserName, year: mYear, month: mMonth, day: mDay))
     }
 
-    convenience init(dateJournal: Date){
+    convenience init(dateJournal: Date) {
         self.init(dateJournal: dateJournal,
                 folderManager: FolderManager())
     }
@@ -185,6 +185,14 @@ class JournalSaver: AllJournalSaver {
         \"Coolio dude! Let's do it!\"\n    }\n  ]\n}
         """
     }
+
+    private static func getDateAsString(dateJournal: Date) -> (dateStrArray: [String], dateStr: String) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateStr = formatter.string(from: dateJournal)
+        return (dateStr.components(separatedBy: "-"), dateStr)
+    }
+
 }
 
 struct MomentJournalCoda: Codable {
@@ -192,11 +200,6 @@ struct MomentJournalCoda: Codable {
     let written: String
 }
 
-private func getDateAsString(dateJournal: Date) -> (dateStrArray: [String], dateStr: String) {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    let dateStr = formatter.string(from: dateJournal)
-    return (dateStr.components(separatedBy: "-"), dateStr)
-}
+
 
 

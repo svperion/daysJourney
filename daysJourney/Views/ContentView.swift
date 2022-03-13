@@ -9,15 +9,12 @@ import SwiftUI
 
 private let currentDTFormats = getCurrentTime()
 
-
-
 struct ContentView: View {
     @StateObject var jViewModel = JournalViewModel()
     @State var selection = 2
     var body: some View {
 
         TabView(selection: $selection) {
-
                 AllPage()
                         .tag(0)
                 FavePage()
@@ -27,17 +24,16 @@ struct ContentView: View {
                         .tag(2)
                 TodayPage()
                         .tag(3)
-
-
         }
                 .tabViewStyle(.page(indexDisplayMode: .always))
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
 
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
-                    saveToDisk(userWriting: jViewModel.currentWrite, date: currentDTFormats.dateJournal)
+                    saveJournal(userWriting: jViewModel.currentWrite, date: currentDTFormats.dateJournal)
                     print("Lost Focus")
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+
                     print("Gain Focus")
                 }
     }

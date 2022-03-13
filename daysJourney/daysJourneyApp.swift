@@ -9,15 +9,15 @@ import SwiftUI
 
 @main
 struct daysJourneyApp: App {
-    @StateObject var jViewModel = LogInViewModel()
+    @StateObject var liViewModel = LogInViewModel()
     var body: some Scene {
         WindowGroup {
-            if jViewModel.isLoggedIn {
+            if liViewModel.isLoggedIn {
                 ContentView()
-                        .environmentObject(jViewModel)
+                        .environmentObject(liViewModel)
             } else {
                 LoginView()
-                        .environmentObject(jViewModel)
+                        .environmentObject(liViewModel)
             }
 
         }

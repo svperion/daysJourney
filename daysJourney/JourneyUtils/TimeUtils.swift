@@ -11,7 +11,7 @@ func getCurrentTime() -> DTFormats {
 func getDateTimeData(date: Date) -> DTFormats {
     let timeStr = getTimeAsString(time: date)
     let dateStr = getDateAsString(date: date)
-    return DTFormats(timeStr: timeStr, dateStr: dateStr, date: date)
+    return DTFormats(timeStr: timeStr, dateStr: dateStr, dateJournal: date)
 }
 
 private func getDateAsString(date: Date) -> String {
@@ -19,6 +19,7 @@ private func getDateAsString(date: Date) -> String {
     dateFormatter.dateFormat = "EE, MMM dd, yyyy"
     return dateFormatter.string(from: date)
 }
+
 
 func getTimeAsString(time: Date) -> String {
     let dateFormatter = DateFormatter()
