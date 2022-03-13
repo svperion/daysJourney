@@ -4,25 +4,25 @@
 
 import Foundation
 
-// folder name counting starts with the outermost folder (parent of all)
+
 
 
 class FolderManager {
     private let fileManager = FileManager.default
 
-    // TODO: make all folder name variables a single String array
-    let mFolderNames: [String]
+    // folder name counting starts with the outermost folder (parent of all)
+    private let mFolderNames: [String]
     private let mFinalFile: String
 
-    // used to check or create the a journal file
+    // used to check or create a daily journal file
     init(username: String, year: String, month: String, day: String) {
         let FIRST_FOLDER = "allJournals.daysJourney"
         let SECOND_FOLDER = "allJournals.daysJourney"
-        let THIRD_FOLDER = "\(username).allJourneys"
-        let FOURTH_FOLDER = "\(year).dj"
-        let FIFTH_FOLDER = "\(month)_\(year).dj"
+        let THIRD_FOLDER = "\(year).dj"
+        let FOURTH_FOLDER = "\(month)_\(year).dj"
+
         mFinalFile = "\(day)_\(month)_\(year).json"
-        mFolderNames = [FIRST_FOLDER, SECOND_FOLDER, THIRD_FOLDER, FOURTH_FOLDER, FIFTH_FOLDER]
+        mFolderNames = [FIRST_FOLDER, SECOND_FOLDER, THIRD_FOLDER, FOURTH_FOLDER]
     }
 
     // used to check or create the allJournals file

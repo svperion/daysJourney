@@ -66,7 +66,7 @@ class AllJournalSaver {
 
 class JournalSaver: AllJournalSaver {
 
-    private let mUserName: String = "orionneguse"
+    private let mUserName: String = DefaultsHandler().getUsername()
     private let mYear: String, mMonth: String, mDay: String, mFullDate: String
 
     required init(dateJournal: Date, folderManager: FolderManager) {
@@ -199,24 +199,4 @@ private func getDateAsString(dateJournal: Date) -> (dateStrArray: [String], date
     return (dateStr.components(separatedBy: "-"), dateStr)
 }
 
-func getCurrentTime() -> (timeStr: String, dateStr: String, dateJournal: Date) {
-    getDateTimeData(date: Date())
-}
 
-func getDateTimeData(date: Date) -> (timeStr: String, dateStr: String, dateJournal: Date) {
-    let timeStr = getTimeAsString(time: date)
-    let dateStr = getDateAsString(date: date)
-    return (timeStr: timeStr, dateStr: dateStr, dateJournal: date)
-}
-
-private func getDateAsString(date: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "EE, MMM dd, yyyy"
-    return dateFormatter.string(from: date)
-}
-
-private func getTimeAsString(time: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "h:mm:ss a"
-    return dateFormatter.string(from: time).lowercased()
-}
