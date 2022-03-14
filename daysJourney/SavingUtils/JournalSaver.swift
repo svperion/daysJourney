@@ -66,11 +66,11 @@ class AllJournalSaver {
 
 class JournalSaver: AllJournalSaver {
 
-    private let mUserName: String = DefaultsHandler().getUsername()
+    private let mUserName: String = DefaultsHandler.getUsername()
     private let mYear: String, mMonth: String, mDay: String, mFullDate: String
 
     required init(dateJournal: Date, folderManager: FolderManager) {
-        let dates = JournalSaver.getDateAsString(dateJournal: dateJournal)
+        let dates = getDateAsColTuple(dateJournal: dateJournal)
         mYear = dates.dateStrArray[0]
         mMonth = dates.dateStrArray[1]
         mDay = dates.dateStrArray[2]
@@ -184,13 +184,6 @@ class JournalSaver: AllJournalSaver {
         \"Cool things! Yes\"\n    },\n    {\n      \"time\": 1655192729,\n      \"written\": 
         \"Coolio dude! Let's do it!\"\n    }\n  ]\n}
         """
-    }
-
-    private static func getDateAsString(dateJournal: Date) -> (dateStrArray: [String], dateStr: String) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let dateStr = formatter.string(from: dateJournal)
-        return (dateStr.components(separatedBy: "-"), dateStr)
     }
 
 }

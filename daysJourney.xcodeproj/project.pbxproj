@@ -11,24 +11,23 @@
 		AEF441CA68676EFE74576552 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44478BD0D9793A46CA0C7 /* HeaderView.swift */; };
 		AEF441CCD7BB9377EA3254BF /* EnvObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44D14BE670D6E32AF0E1F /* EnvObject.swift */; };
 		AEF44251AA6C06EBB156C2E1 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44478BD0D9793A46CA0C7 /* HeaderView.swift */; };
-		AEF442D256A78E1CF3A81613 /* EnvObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44D14BE670D6E32AF0E1F /* EnvObject.swift */; };
 		AEF443846A50CA6E5FDE09DC /* RealmSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AEF820CBFEB2B1CE684 /* RealmSave.swift */; };
-		AEF4438F65D7A54BCC3073B0 /* JFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB5A1624C7E4C4288C7 /* JFunc.swift */; };
+		AEF4438F65D7A54BCC3073B0 /* MiscFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB5A1624C7E4C4288C7 /* MiscFuncs.swift */; };
 		AEF443C3D73ACB980A0A281E /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
 		AEF44488030C615C90107E6C /* FolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderManager.swift */; };
+		AEF44545F4C36FDEB0BC71C7 /* DefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */; };
 		AEF445CF3B3088E94EB25894 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF4412A3FD91E9472CAE04A /* LoginView.swift */; };
-		AEF4463C3E4CB000B3FA036D /* JFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB5A1624C7E4C4288C7 /* JFunc.swift */; };
+		AEF4463C3E4CB000B3FA036D /* MiscFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB5A1624C7E4C4288C7 /* MiscFuncs.swift */; };
 		AEF447CA0F36145D5374DB1C /* EnvObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44D14BE670D6E32AF0E1F /* EnvObject.swift */; };
 		AEF447F970BF8D8962C72AC0 /* FolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderManager.swift */; };
 		AEF44803C6131793615F398B /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB78A11034B67463575 /* TimeUtils.swift */; };
-		AEF4485CF48E3E258C2E7E9C /* JFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB5A1624C7E4C4288C7 /* JFunc.swift */; };
+		AEF4485CF48E3E258C2E7E9C /* MiscFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB5A1624C7E4C4288C7 /* MiscFuncs.swift */; };
 		AEF44A357F755DAA98CA5101 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB78A11034B67463575 /* TimeUtils.swift */; };
 		AEF44A8F21814C4CC46E6104 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB78A11034B67463575 /* TimeUtils.swift */; };
 		AEF44AF71CEC6D7960A40788 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44DD18F4C2BA54E2D014A /* ContentView.swift */; };
 		AEF44CDB33621B5F15C0790B /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF441E53DC14C4B0A3C1420 /* ModalView.swift */; };
 		AEF44DB03C268309D81AA774 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF4412A3FD91E9472CAE04A /* LoginView.swift */; };
 		AEF44DF37EA4A426FEA04F3B /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
-		AEF44E5468DC4669CFFF05C2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF4412A3FD91E9472CAE04A /* LoginView.swift */; };
 		AEF44EBDB426ABA7B14A6300 /* FolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderManager.swift */; };
 		AEF44F6C08E4798E6C16FD50 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF441E53DC14C4B0A3C1420 /* ModalView.swift */; };
 		B685775B27A66D6A00E587FA /* daysJourneyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685775A27A66D6A00E587FA /* daysJourneyApp.swift */; };
@@ -50,6 +49,9 @@
 		B68577B727A66E1400E587FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68577B627A66E1400E587FA /* Preview Assets.xcassets */; };
 		B698A71127DEBBDB00672D08 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B698A71027DEBBDB00672D08 /* Realm */; };
 		B698A71327DEBBDB00672D08 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B698A71227DEBBDB00672D08 /* RealmSwift */; };
+		B698A71527DFC3DC00672D08 /* RealmSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AEF820CBFEB2B1CE684 /* RealmSave.swift */; };
+		B698A71627DFC3E400672D08 /* DefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */; };
+		B698A71727DFC3E500672D08 /* DefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,11 +101,12 @@
 		AEF441E53DC14C4B0A3C1420 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		AEF44242173778FDE13ED4F1 /* JournalSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalSaver.swift; sourceTree = "<group>"; };
 		AEF44478BD0D9793A46CA0C7 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsHandler.swift; sourceTree = "<group>"; };
 		AEF44AE4FC3B09A0D41A39C9 /* FolderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderManager.swift; sourceTree = "<group>"; };
 		AEF44AEF820CBFEB2B1CE684 /* RealmSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmSave.swift; sourceTree = "<group>"; };
 		AEF44D14BE670D6E32AF0E1F /* EnvObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvObject.swift; sourceTree = "<group>"; };
 		AEF44DD18F4C2BA54E2D014A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		AEF44EB5A1624C7E4C4288C7 /* JFunc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JFunc.swift; sourceTree = "<group>"; };
+		AEF44EB5A1624C7E4C4288C7 /* MiscFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscFuncs.swift; sourceTree = "<group>"; };
 		AEF44EB78A11034B67463575 /* TimeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		B685775727A66D6A00E587FA /* daysJourney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daysJourney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B685775A27A66D6A00E587FA /* daysJourneyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = daysJourneyApp.swift; sourceTree = "<group>"; };
@@ -193,8 +196,9 @@
 		AEF44DA87F7A8CB8BC6AFEB1 /* JourneyUtils */ = {
 			isa = PBXGroup;
 			children = (
-				AEF44EB5A1624C7E4C4288C7 /* JFunc.swift */,
+				AEF44EB5A1624C7E4C4288C7 /* MiscFuncs.swift */,
 				AEF44EB78A11034B67463575 /* TimeUtils.swift */,
+				AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */,
 			);
 			path = JourneyUtils;
 			sourceTree = "<group>";
@@ -477,11 +481,12 @@
 				AEF441CA68676EFE74576552 /* HeaderView.swift in Sources */,
 				AEF44CDB33621B5F15C0790B /* ModalView.swift in Sources */,
 				AEF44AF71CEC6D7960A40788 /* ContentView.swift in Sources */,
-				AEF4438F65D7A54BCC3073B0 /* JFunc.swift in Sources */,
+				AEF4438F65D7A54BCC3073B0 /* MiscFuncs.swift in Sources */,
 				AEF44DB03C268309D81AA774 /* LoginView.swift in Sources */,
 				AEF441CCD7BB9377EA3254BF /* EnvObject.swift in Sources */,
 				AEF44803C6131793615F398B /* TimeUtils.swift in Sources */,
 				AEF443846A50CA6E5FDE09DC /* RealmSave.swift in Sources */,
+				AEF44545F4C36FDEB0BC71C7 /* DefaultsHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,15 +495,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B685777C27A66D6C00E587FA /* NotificationController.swift in Sources */,
+				B698A71627DFC3E400672D08 /* DefaultsHandler.swift in Sources */,
 				B685777A27A66D6C00E587FA /* ContentView.swift in Sources */,
 				B685778027A66D6C00E587FA /* ComplicationController.swift in Sources */,
 				B685777827A66D6C00E587FA /* daysJourneyApp.swift in Sources */,
 				B685777E27A66D6C00E587FA /* NotificationView.swift in Sources */,
 				AEF44DF37EA4A426FEA04F3B /* JournalSaver.swift in Sources */,
 				AEF44488030C615C90107E6C /* FolderManager.swift in Sources */,
-				AEF4463C3E4CB000B3FA036D /* JFunc.swift in Sources */,
-				AEF44E5468DC4669CFFF05C2 /* LoginView.swift in Sources */,
-				AEF442D256A78E1CF3A81613 /* EnvObject.swift in Sources */,
+				AEF4463C3E4CB000B3FA036D /* MiscFuncs.swift in Sources */,
 				AEF44A8F21814C4CC46E6104 /* TimeUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,11 +513,13 @@
 			files = (
 				B68577B227A66E1400E587FA /* ContentView.swift in Sources */,
 				B68577B027A66E1400E587FA /* daysJourney_macOSApp.swift in Sources */,
+				B698A71727DFC3E500672D08 /* DefaultsHandler.swift in Sources */,
 				AEF443C3D73ACB980A0A281E /* JournalSaver.swift in Sources */,
 				AEF44EBDB426ABA7B14A6300 /* FolderManager.swift in Sources */,
+				B698A71527DFC3DC00672D08 /* RealmSave.swift in Sources */,
 				AEF44251AA6C06EBB156C2E1 /* HeaderView.swift in Sources */,
 				AEF44F6C08E4798E6C16FD50 /* ModalView.swift in Sources */,
-				AEF4485CF48E3E258C2E7E9C /* JFunc.swift in Sources */,
+				AEF4485CF48E3E258C2E7E9C /* MiscFuncs.swift in Sources */,
 				AEF445CF3B3088E94EB25894 /* LoginView.swift in Sources */,
 				AEF447CA0F36145D5374DB1C /* EnvObject.swift in Sources */,
 				AEF44A357F755DAA98CA5101 /* TimeUtils.swift in Sources */,

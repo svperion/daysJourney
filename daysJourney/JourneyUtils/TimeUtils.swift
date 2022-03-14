@@ -27,8 +27,41 @@ func getTimeAsString(time: Date) -> String {
     return dateFormatter.string(from: time).lowercased()
 }
 
+
+
+struct TimePass {
+    static func muchTimePass() -> Bool {
+        let lastOpened = Int(DefaultsHandler.getLastOpened().timeIntervalSince1970)
+        let secsPassed = Int(Date().timeIntervalSince1970) - lastOpened
+        let secsCanPass = DefaultsHandler.secsCanPass()
+
+        return (secsPassed > secsCanPass)
+    }
+
+    private static func howMuchSecsPass(since: Int, to: Int) -> Int {
+        to - since
+    }
+
+    private static func howMuchMinPass(time: Int) -> Int {
+        (time / 60)
+    }
+}
+
+
+func getDateAsColTuple(dateJournal: Date) -> (dateStrArray: [String], dateStr: String) {
+    let dateStr = getDateAsHyphSep(dateJournal: dateJournal)
+    return (dateStr.components(separatedBy: "-"), dateStr)
+}
+
+func getDateAsHyphSep(dateJournal: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter.string(from: dateJournal)
+}
+
 struct DTFormats {
     let timeStr: String
     let dateStr: String
     let dateJournal: Date
 }
+

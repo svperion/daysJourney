@@ -6,15 +6,14 @@ import Foundation
 
 class LogInViewModel: ObservableObject {
     @Published var isLoggedIn: Bool
-    let defaultHandler = DefaultsHandler()
 
     init() {
         print(NSHomeDirectory())
-        isLoggedIn = defaultHandler.isLoggedIn()
+        isLoggedIn = DefaultsHandler.isLoggedIn()
     }
 
     func logIn(username: String) {
-        defaultHandler.logIn(username)
+        DefaultsHandler.logIn(username)
         isLoggedIn = true
     }
 }
@@ -22,13 +21,16 @@ class LogInViewModel: ObservableObject {
 class JournalViewModel: ObservableObject {
     // holds the user's current writing
     @Published var currentWrite = ""
+    var realmSave: RealmSave?
 
+    func initializeRealm() {
+        realmSave = RealmSave()
+    }
+
+//        DefaultsHandler.setLastOpened(endTime)
 }
 
-func isStrBlank(text: String) -> Bool {
-    let trimmed = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    return trimmed.isEmpty
-}
+
 
 
 

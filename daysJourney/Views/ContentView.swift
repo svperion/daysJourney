@@ -15,25 +15,29 @@ struct ContentView: View {
     var body: some View {
 
         TabView(selection: $selection) {
-                AllPage()
-                        .tag(0)
-                FavePage()
-                        .tag(1)
-                DaysPage()
-                        .environmentObject(jViewModel)
-                        .tag(2)
-                TodayPage()
-                        .tag(3)
+            AllPage()
+                    .tag(0)
+            FavePage()
+                    .tag(1)
+            DaysPage()
+                    .environmentObject(jViewModel)
+                    .tag(2)
+            TodayPage()
+                    .tag(3)
         }
                 .tabViewStyle(.page(indexDisplayMode: .always))
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
 
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
-                    saveJournal(userWriting: jViewModel.currentWrite, date: currentDTFormats.dateJournal)
+                    RealmSave().saveJournal(userWriting: jViewModel.currentWrite, startTime: currentDTFormats.dateJournal)
                     print("Lost Focus")
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                     print("Gain Focus \(Date().timeIntervalSince1970)")
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didFinishLaunchingNotification)) { _ in
+                    jViewModel.initializeRealm()
+                    print("REALM INIT")
                 }
     }
 }
@@ -43,14 +47,12 @@ struct AllPage: View {
         VStack {
             HStack {
                 Button(action: {
-                    modifyRealm()
                 }) {
                     Image("cog_grey").renderingMode(.original)
                 }
                         .padding()
                 TopHeader(headerStr: "allJourneys", headerColor: Color.cyan, alignment: Alignment.trailing)
             }
-
         }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.horizontal)
@@ -79,11 +81,11 @@ struct DaysPage: View {
 
     var body: some View {
         VStack {
-
             DatedHeader(headerStr: "daysJourney", headerColor: Color.purple, alignment: Alignment.trailing,
                     dateStr: currentDTFormats.dateStr)
 
             VStack {
+                // TODO: IMPLEMENT BUTTON FUNCTIONS
                 Button(action: {}, label: {
                     Text(currentDTFormats.timeStr + ":")
                             .font(.body)
@@ -91,7 +93,6 @@ struct DaysPage: View {
 
                 })
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-
 
                 TextEditor(text: $jViewModel.currentWrite)
                         .font(.body)
@@ -131,7 +132,6 @@ struct TodayPage: View {
         }
     }
 }
-
 
 
 struct ContentView_Previews: PreviewProvider {
