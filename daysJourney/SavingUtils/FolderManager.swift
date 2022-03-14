@@ -4,9 +4,6 @@
 
 import Foundation
 
-
-
-
 class FolderManager {
     private let fileManager = FileManager.default
 

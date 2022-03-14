@@ -4,8 +4,12 @@
 
 import Foundation
 
+// TODO: ADD VOICE RECORDING FUNCTIONALITY
+// TODO: ADD PICTURE FUNCTIONALITY
+
 func saveJournal(userWriting: String, date: Date) {
     if !isStrBlank(text: userWriting) {
+        DefaultsHandler().setLastOpened(Date())
         JournalSaver(dateJournal: date).saveJournalToDisk(userWriting: userWriting)
     }
     print(NSHomeDirectory())
@@ -61,7 +65,7 @@ class DefaultsHandler {
         userDefaults.object(forKey: KEY_LOGGED_IN) as! Date?
     }
 
-    func setNowLastOpened(){
+    func setNowLastOpened() {
         setLastOpened(Date())
     }
 
@@ -73,3 +77,5 @@ class DefaultsHandler {
         userDefaults.string(forKey: KEY_USERNAME) ?? ""
     }
 }
+
+

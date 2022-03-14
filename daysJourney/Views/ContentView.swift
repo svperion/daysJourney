@@ -33,8 +33,7 @@ struct ContentView: View {
                     print("Lost Focus")
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-
-                    print("Gain Focus")
+                    print("Gain Focus \(Date().timeIntervalSince1970)")
                 }
     }
 }
@@ -43,7 +42,9 @@ struct AllPage: View {
     var body: some View {
         VStack {
             HStack {
-                Button(action: {}) {
+                Button(action: {
+                    modifyRealm()
+                }) {
                     Image("cog_grey").renderingMode(.original)
                 }
                         .padding()
