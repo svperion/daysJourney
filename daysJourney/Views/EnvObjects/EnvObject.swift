@@ -4,6 +4,9 @@
 
 import Foundation
 
+let realmSave: RealmSave = RealmSave()
+
+
 class LogInViewModel: ObservableObject {
     @Published var isLoggedIn: Bool
 
@@ -19,15 +22,24 @@ class LogInViewModel: ObservableObject {
 }
 
 class JournalViewModel: ObservableObject {
+
+    @Published var currentWrite: String
+    let currentDTFormats: DTFormats
     // holds the user's current writing
-    @Published var currentWrite = ""
-    var realmSave: RealmSave?
+    let currentTuple = realmSave.startFromMoment()
 
-    func initializeRealm() {
-        realmSave = RealmSave()
+    init() {
+        currentWrite = currentTuple.currentWrite
+        currentDTFormats = currentTuple.timeData
+        print(realmSave.getAllJournalsAsTMs())
     }
+}
 
-//        DefaultsHandler.setLastOpened(endTime)
+struct AllDaysMenu: Codable, Equatable, Identifiable {
+    let id: String
+    let date: String
+    let time: String
+    let written: String
 }
 
 

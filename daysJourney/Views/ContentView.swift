@@ -6,43 +6,80 @@
 //
 
 import SwiftUI
-
-private let currentDTFormats = getCurrentTime()
+import RealmSwift
 
 struct ContentView: View {
     @StateObject var jViewModel = JournalViewModel()
     @State var selection = 2
     var body: some View {
 
-        TabView(selection: $selection) {
-            AllPage()
-                    .tag(0)
-            FavePage()
-                    .tag(1)
-            DaysPage()
-                    .environmentObject(jViewModel)
-                    .tag(2)
-            TodayPage()
-                    .tag(3)
+        NavigationView {
+            TabView {
+                DaysPage()
+                        .environmentObject(jViewModel)
+                        .tabItem {
+                            Image("cog_grey")
+                            Text("Day")
+                        }
+                FavePage()
+                        .tabItem {
+                            Image("cog_grey")
+                            Text("Faves")
+                        }
+                AllPage()
+                        .environmentObject(jViewModel)
+                        .tabItem {
+                            Image("cog_grey")
+                            Text("All")
+                        }
+            }
         }
-                .tabViewStyle(.page(indexDisplayMode: .always))
-                .indexViewStyle(.page(backgroundDisplayMode: .always))
-
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
-                    RealmSave().saveJournal(userWriting: jViewModel.currentWrite, startTime: currentDTFormats.dateJournal)
+                    realmSave.saveJournal(userWriting: jViewModel.currentWrite,
+                            startTime: jViewModel.currentDTFormats.dateJournal)
                     print("Lost Focus")
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                     print("Gain Focus \(Date().timeIntervalSince1970)")
                 }
-                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didFinishLaunchingNotification)) { _ in
-                    jViewModel.initializeRealm()
-                    print("REALM INIT")
-                }
+    }
+}
+
+// displays the current journal that the user is writing
+struct DaysPage: View {
+    @EnvironmentObject var jViewModel: JournalViewModel
+    var body: some View {
+        VStack {
+            DatedHeader(headerStr: "daysJourney", headerColor: Color.purple, alignment: Alignment.trailing, dateStr: jViewModel.currentDTFormats.dateStr)
+
+            VStack {
+                // TODO: IMPLEMENT BUTTON FUNCTIONS
+                Button(action: {}, label: {
+                    Text(jViewModel.currentDTFormats.timeStr + ":")
+                            .font(.body)
+                            .foregroundColor(.gray)
+
+                })
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+
+                TextEditor(text: $jViewModel.currentWrite)
+                        .font(.body)
+                        .padding(.bottom)
+            }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150, maxHeight: 630, alignment: .leading)
+        }
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
+                .padding(.horizontal)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
     }
 }
 
 struct AllPage: View {
+    @EnvironmentObject var jViewModel: JournalViewModel
+    let dictJournals = realmSave.getAllJournalsAsTMs()
+    @State var presentingModal = false
     var body: some View {
         VStack {
             HStack {
@@ -52,10 +89,33 @@ struct AllPage: View {
                 }
                         .padding()
                 TopHeader(headerStr: "allJourneys", headerColor: Color.cyan, alignment: Alignment.trailing)
+                        .padding(.horizontal)
             }
+
+            List {
+                // TODO: ADD ALL FUNCTIONALITY SUCH AS WRITTEN
+                ForEach(Array(dictJournals.keys), id: \.self) { key in
+                    Section(header: Text(getDateAsString(key))){
+                        // If you wanted to iterate through each of the values in the keys, you can do the following: (transactionDate is the String key)
+                        ForEach(dictJournals[key]!) { moment in
+                            Button(moment.time) {
+                                self.presentingModal = true
+                            }
+                                    .sheet(isPresented: $presentingModal) {
+                                        JournalModal(oldDate: moment.date, oldTime: moment.time, oldJournal: moment.written)
+                                    }
+                        }
+                    }
+                }
+            }
+                    .listStyle(.grouped)
+
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
         }
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.horizontal)
     }
 }
 
@@ -70,66 +130,11 @@ struct FavePage: View {
                         .padding()
             }
         }
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.horizontal)
-    }
-}
-
-// displays the current journal that the user is writing
-struct DaysPage: View {
-    @EnvironmentObject var jViewModel: JournalViewModel
-
-    var body: some View {
-        VStack {
-            DatedHeader(headerStr: "daysJourney", headerColor: Color.purple, alignment: Alignment.trailing,
-                    dateStr: currentDTFormats.dateStr)
-
-            VStack {
-                // TODO: IMPLEMENT BUTTON FUNCTIONS
-                Button(action: {}, label: {
-                    Text(currentDTFormats.timeStr + ":")
-                            .font(.body)
-                            .foregroundColor(.gray)
-
-                })
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-
-                TextEditor(text: $jViewModel.currentWrite)
-                        .font(.body)
-                        .padding(.bottom, 35)
-            }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150, maxHeight: 630, alignment: .leading)
-        }
-                .padding(.horizontal)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-    }
-}
-
-// displays all the journals from the same day
-struct TodayPage: View {
-    @EnvironmentObject private var observeModel: LogInViewModel
-    let daysJournalTimes = getAllJournalTime(date: currentDTFormats.dateJournal)
-    @State var presentingModal = false
-    var body: some View {
-        VStack {
-            DatedHeader(headerStr: "todaysJourney", headerColor: Color.green, alignment: Alignment.leading,
-                    dateStr: currentDTFormats.dateStr)
-                    .padding(.horizontal)
-
-            List {
-                ForEach(daysJournalTimes) { moment in
-                    Button(moment.time) {
-                        self.presentingModal = true
-                    }
-                            .sheet(isPresented: $presentingModal) {
-                                JournalModal(oldDate: moment.date, oldTime: moment.time, oldJournal: moment.written)
-                            }
-                }
-
-            }
-                    .listStyle(.plain)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-        }
     }
 }
 

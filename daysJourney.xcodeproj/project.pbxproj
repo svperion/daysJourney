@@ -52,6 +52,9 @@
 		B698A71527DFC3DC00672D08 /* RealmSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AEF820CBFEB2B1CE684 /* RealmSave.swift */; };
 		B698A71627DFC3E400672D08 /* DefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */; };
 		B698A71727DFC3E500672D08 /* DefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */; };
+		B698A71B27E043EB00672D08 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = B698A71A27E043EB00672D08 /* Collections */; };
+		B698A71D27E043EB00672D08 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = B698A71C27E043EB00672D08 /* DequeModule */; };
+		B698A71F27E043EB00672D08 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = B698A71E27E043EB00672D08 /* OrderedCollections */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +144,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B698A71F27E043EB00672D08 /* OrderedCollections in Frameworks */,
+				B698A71B27E043EB00672D08 /* Collections in Frameworks */,
+				B698A71D27E043EB00672D08 /* DequeModule in Frameworks */,
 				B698A71327DEBBDB00672D08 /* RealmSwift in Frameworks */,
 				B698A71127DEBBDB00672D08 /* Realm in Frameworks */,
 			);
@@ -323,6 +329,9 @@
 			packageProductDependencies = (
 				B698A71027DEBBDB00672D08 /* Realm */,
 				B698A71227DEBBDB00672D08 /* RealmSwift */,
+				B698A71A27E043EB00672D08 /* Collections */,
+				B698A71C27E043EB00672D08 /* DequeModule */,
+				B698A71E27E043EB00672D08 /* OrderedCollections */,
 			);
 			productName = daysJourney;
 			productReference = B685775727A66D6A00E587FA /* daysJourney.app */;
@@ -419,6 +428,7 @@
 			mainGroup = B685774E27A66D6A00E587FA;
 			packageReferences = (
 				B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = B685775827A66D6A00E587FA /* Products */;
 			projectDirPath = "";
@@ -922,6 +932,14 @@
 				version = 10.24.0;
 			};
 		};
+		B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -934,6 +952,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		B698A71A27E043EB00672D08 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		B698A71C27E043EB00672D08 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		B698A71E27E043EB00672D08 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -20,14 +20,11 @@ private func getDateAsString(date: Date) -> String {
     return dateFormatter.string(from: date)
 }
 
-
 func getTimeAsString(time: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "h:mm a"
     return dateFormatter.string(from: time).lowercased()
 }
-
-
 
 struct TimePass {
     static func muchTimePass() -> Bool {
@@ -47,10 +44,16 @@ struct TimePass {
     }
 }
 
-
 func getDateAsColTuple(dateJournal: Date) -> (dateStrArray: [String], dateStr: String) {
     let dateStr = getDateAsHyphSep(dateJournal: dateJournal)
     return (dateStr.components(separatedBy: "-"), dateStr)
+}
+
+func getDateAsString(_ dateStr: String) -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    let date = formatter.date(from: dateStr)!
+    return getDateAsString(date: date)
 }
 
 func getDateAsHyphSep(dateJournal: Date) -> String {
