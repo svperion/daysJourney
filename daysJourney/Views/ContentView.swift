@@ -93,14 +93,18 @@ struct AllPage: View {
             }
 
             List {
-                // TODO: ADD ALL FUNCTIONALITY SUCH AS WRITTEN
+                // TODO: FIX THE DATE ORDERS
                 ForEach(Array(dictJournals.keys), id: \.self) { key in
                     Section(header: Text(getDateAsString(key))){
                         // If you wanted to iterate through each of the values in the keys, you can do the following: (transactionDate is the String key)
                         ForEach(dictJournals[key]!) { moment in
-                            Button(moment.time) {
-                                self.presentingModal = true
+                            HStack{
+                                Button(moment.time) {
+                                    self.presentingModal = true
+                                }
+                                Text(getStartingChars(written: moment.written))
                             }
+
                                     .sheet(isPresented: $presentingModal) {
                                         JournalModal(oldDate: moment.date, oldTime: moment.time, oldJournal: moment.written)
                                     }
@@ -108,13 +112,10 @@ struct AllPage: View {
                     }
                 }
             }
-                    .listStyle(.grouped)
-
+                    .listStyle(.insetGrouped)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
         }
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
-                .navigationBarBackButtonHidden(true)
+                .navigationBarTitle("allJourneys")
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
     }
 }
