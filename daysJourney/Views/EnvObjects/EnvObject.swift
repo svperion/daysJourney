@@ -22,7 +22,7 @@ class LogInViewModel: ObservableObject {
 }
 
 class JournalViewModel: ObservableObject {
-
+    @Published var allPageSelection = Set<String>()
     @Published var currentWrite: String
     let currentDTFormats: DTFormats
     // holds the user's current writing
@@ -32,6 +32,7 @@ class JournalViewModel: ObservableObject {
         currentWrite = currentTuple.currentWrite
         currentDTFormats = currentTuple.timeData
         print(realmSave.getAllJournalsAsTMs())
+        allPageSelection
     }
 }
 

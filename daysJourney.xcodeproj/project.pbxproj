@@ -26,6 +26,7 @@
 		AEF44A8F21814C4CC46E6104 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB78A11034B67463575 /* TimeUtils.swift */; };
 		AEF44AF71CEC6D7960A40788 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44DD18F4C2BA54E2D014A /* ContentView.swift */; };
 		AEF44CDB33621B5F15C0790B /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF441E53DC14C4B0A3C1420 /* ModalView.swift */; };
+		AEF44D80ADFC31DFF009E256 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF446631C1C54B932E913A1 /* MainView.swift */; };
 		AEF44DB03C268309D81AA774 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF4412A3FD91E9472CAE04A /* LoginView.swift */; };
 		AEF44DF37EA4A426FEA04F3B /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
 		AEF44EBDB426ABA7B14A6300 /* FolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderManager.swift */; };
@@ -104,6 +105,7 @@
 		AEF441E53DC14C4B0A3C1420 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		AEF44242173778FDE13ED4F1 /* JournalSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalSaver.swift; sourceTree = "<group>"; };
 		AEF44478BD0D9793A46CA0C7 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		AEF446631C1C54B932E913A1 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsHandler.swift; sourceTree = "<group>"; };
 		AEF44AE4FC3B09A0D41A39C9 /* FolderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderManager.swift; sourceTree = "<group>"; };
 		AEF44AEF820CBFEB2B1CE684 /* RealmSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmSave.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				AEF44DD18F4C2BA54E2D014A /* ContentView.swift */,
 				AEF4412A3FD91E9472CAE04A /* LoginView.swift */,
 				AEF44565EA20F8DA83FF49B6 /* EnvObjects */,
+				AEF446631C1C54B932E913A1 /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -427,8 +430,8 @@
 			);
 			mainGroup = B685774E27A66D6A00E587FA;
 			packageReferences = (
-				B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift.git" */,
+				B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections.git" */,
 			);
 			productRefGroup = B685775827A66D6A00E587FA /* Products */;
 			projectDirPath = "";
@@ -497,6 +500,7 @@
 				AEF44803C6131793615F398B /* TimeUtils.swift in Sources */,
 				AEF443846A50CA6E5FDE09DC /* RealmSave.swift in Sources */,
 				AEF44545F4C36FDEB0BC71C7 /* DefaultsHandler.swift in Sources */,
+				AEF44D80ADFC31DFF009E256 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,7 +928,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -932,7 +936,7 @@
 				version = 10.24.0;
 			};
 		};
-		B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+		B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
@@ -945,27 +949,27 @@
 /* Begin XCSwiftPackageProductDependency section */
 		B698A71027DEBBDB00672D08 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = Realm;
 		};
 		B698A71227DEBBDB00672D08 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = B698A70F27DEBBDB00672D08 /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = RealmSwift;
 		};
 		B698A71A27E043EB00672D08 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			package = B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections.git" */;
 			productName = Collections;
 		};
 		B698A71C27E043EB00672D08 /* DequeModule */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			package = B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections.git" */;
 			productName = DequeModule;
 		};
 		B698A71E27E043EB00672D08 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			package = B698A71927E043EB00672D08 /* XCRemoteSwiftPackageReference "swift-collections.git" */;
 			productName = OrderedCollections;
 		};
 /* End XCSwiftPackageProductDependency section */

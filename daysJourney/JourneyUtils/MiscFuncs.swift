@@ -6,6 +6,7 @@ import Foundation
 
 // TODO: ADD VOICE RECORDING FUNCTIONALITY
 // TODO: ADD PICTURE FUNCTIONALITY
+// TODO: ADD EXPORT/IMPORT AND CLOUD SAVE FUNCTIONALITY
 
 func isStrBlank(text: String) -> Bool {
     let trimmed = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

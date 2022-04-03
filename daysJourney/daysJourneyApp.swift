@@ -19,7 +19,6 @@ struct daysJourneyApp: App {
                 LoginView()
                         .environmentObject(liViewModel)
             }
-
         }
     }
 }

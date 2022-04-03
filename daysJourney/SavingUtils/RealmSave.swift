@@ -15,11 +15,13 @@ class RealmSave {
     private let mLocalRealm: Realm
     private let isMomentContinue: Bool
     private let mAllJournalTasks: Results<JournalsTask>
+    
+    // TODO: MAKE A SEPARATE RealmWrite and RealmRead class 
 
     init() {
         isMomentContinue = !TimePass.muchTimePass()
         mLocalRealm = try! Realm(fileURL: getRealmUrl())
-        mAllJournalTasks = mLocalRealm.objects(JournalsTask.self)
+        mAllJournalTasks = mLocalRealm.objects(JournalsTask.self).sorted(byKeyPath: "date", ascending: false)
     }
 
     func saveJournal(userWriting: String, startTime: Date) {
@@ -123,7 +125,7 @@ class RealmSave {
 
     func getAllMomentsAsTMs() -> [AllDaysMenu] {
         var todayMenus = [AllDaysMenu]()
-        let allMomentsTasks = mLocalRealm.objects(MomentsTask.self)
+        let allMomentsTasks = mLocalRealm.objects(MomentsTask.self).sorted(byKeyPath: "time", ascending: true)
         for momentTask in allMomentsTasks {
             todayMenus.append(getMomentAsADMenu(momentTask: momentTask))
         }
@@ -132,7 +134,8 @@ class RealmSave {
 
     private func getMomentsAsADArray(journalTask: JournalsTask) -> [AllDaysMenu]{
         var todayMenus = [AllDaysMenu]()
-        for momentTask in journalTask.momentsTask {
+        let allMomentTasks = journalTask.momentsTask.sorted{ $0.time > $1.time  }
+        for momentTask in allMomentTasks {
             todayMenus.append(getMomentAsADMenu(momentTask: momentTask))
         }
         return todayMenus
