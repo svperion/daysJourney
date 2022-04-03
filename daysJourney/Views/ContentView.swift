@@ -15,21 +15,23 @@ struct ContentView: View {
             DaysPage()
                     .environmentObject(jViewModel)
                     .tabItem {
-                        Image(systemName: "pencil.circle")
+                        Image(systemName: "square.and.pencil")
                         Text("Day")
                     }
             FavePage()
+                    .environmentObject(jViewModel)
                     .tabItem {
-                        Image(systemName: "heart.circle")
+                        Image(systemName: "heart")
                         Text("Faves")
                     }
             AllPage()
                     .environmentObject(jViewModel)
                     .tabItem {
-                        Image(systemName: "list.bullet.circle")
+                        Image(systemName: "list.bullet")
                         Text("All")
                     }
         }
+                .accentColor(.purple)
 
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
                     realmSave.saveJournal(userWriting: jViewModel.currentWrite,
@@ -51,7 +53,6 @@ struct DaysPage: View {
             DatedHeader(headerStr: "daysJourney", headerColor: Color.purple, alignment: Alignment.trailing, dateStr: jViewModel.currentDTFormats.dateStr)
 
             VStack {
-                // TODO: IMPLEMENT BUTTON FUNCTIONS
                 Button(action: { isFocused.toggle() }, label: {
                     Text(jViewModel.currentDTFormats.timeStr + ":")
                             .font(.body)
@@ -68,101 +69,161 @@ struct DaysPage: View {
             }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150, maxHeight: 630, alignment: .leading)
         }
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
-                .navigationBarBackButtonHidden(true)
                 .padding(.horizontal)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
     }
 }
 
 struct FavePage: View {
+    @EnvironmentObject var jViewModel: JournalViewModel
+
+    private let dictJournals = realmSave.getAllJournalsAsTMs()
+
+    @State private var presentingModal = false
+    @State private var isEditMode: EditMode = .inactive
+    @State private var selBtnStr: String = "Select"
+
     var body: some View {
-        VStack {
-            HStack {
-                TopHeader(headerStr: "faveJourneys", headerColor: Color.red, alignment: Alignment.leading)
-                Button(action: {}) {
-                    Image("cog_grey").renderingMode(.original)
+        NavigationView {
+            VStack {
+                List(selection: $jViewModel.allPageSelection) {
+                    ForEach(Array(dictJournals.keys), id: \.self) { key in
+                        Section(header: Text(getDateAsString(key))) {
+                            // If you wanted to iterate through each of the values in the keys, you can do the following: (transactionDate is the String key)
+                            ForEach(dictJournals[key]!) { moment in
+                                Button(action: { self.presentingModal = true }, label: {
+                                    HStack {
+                                        Text(moment.time)
+                                                .font(.body)
+                                                .foregroundColor(.primary)
+                                        Text(getStartingChars(written: moment.written))
+                                                .font(.body)
+                                                .foregroundColor(.secondary)
+                                    }
+                                })
+                                        .sheet(isPresented: $presentingModal) {
+                                            JournalModal(oldDate: moment.date, oldTime: moment.time, oldJournal: moment.written)
+                                        }
+                            }
+                        }
+                    }
                 }
-                        .padding()
+                        .listStyle(.grouped)
+                        .toolbar {
+                            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                                Button(action: {
+                                    if !isEditMode.isEditing {
+                                        isEditMode = .active
+                                        selBtnStr = "Done"
+                                    } else {
+                                        isEditMode = .inactive
+                                        selBtnStr = "Select"
+                                    }
+
+                                }, label: {
+                                    Text(selBtnStr)
+                                            .foregroundColor(.red)
+                                })
+
+                                Menu {
+                                    Text("Hola")
+                                } label: {
+                                    Image(systemName: "circle.grid.2x2")
+                                            .foregroundColor(.red)
+                                }
+                            }
+                        }
+                        .environment(\.editMode, $isEditMode)
+
             }
-            Button(action: {}) {
-                Image(systemName: "plus")
-                        .foregroundColor(.cyan)
-                        .font(.body)
-            }
+                    .navigationBarTitle("faveJourneys")
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+
         }
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
-                .navigationBarBackButtonHidden(true)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.horizontal)
     }
 }
 
 struct AllPage: View {
     @EnvironmentObject var jViewModel: JournalViewModel
-    @State private var isEditMode: EditMode = .inactive
-    let dictJournals = realmSave.getAllJournalsAsTMs()
-    @State var presentingModal = false
-    var body: some View {
-//        NavigationView {
-        VStack {
-//                HStack {
-//                    Button(action: {
-//                    }) {
-//                        Image("cog_grey").renderingMode(.original)
-//                    }
-//                            .padding()
-//                    TopHeader(headerStr: "allJourneys", headerColor: Color.blue, alignment: Alignment.trailing)
-//                            .padding(.horizontal)
-//                }
-//
-//                Button(action: {
-//                    isEditMode = (isEditMode.isEditing ? .inactive : .active)
-//                }, label: {
-//                    Text("Select")
-//                            .font(.body)
-//                            .foregroundColor(.cyan)
-//
-//                })
-//                        .padding(.horizontal)
-//                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
 
-            List(selection: $jViewModel.allPageSelection) {
-                ForEach(Array(dictJournals.keys), id: \.self) { key in
-                    Section(header: Text(getDateAsString(key))) {
-                        // If you wanted to iterate through each of the values in the keys, you can do the following: (transactionDate is the String key)
-                        ForEach(dictJournals[key]!) { moment in
-                            Button(action: { self.presentingModal = true }, label: {
-                                HStack {
-                                    Text(moment.time)
-                                            .font(.body)
-                                            .foregroundColor(.gray)
-                                    Text(getStartingChars(written: moment.written))
-                                            .font(.body)
-                                            .foregroundColor(.black)
-                                }
-                            })
-                                    .sheet(isPresented: $presentingModal) {
-                                        JournalModal(oldDate: moment.date, oldTime: moment.time, oldJournal: moment.written)
+    private let dictJournals = realmSave.getAllJournalsAsTMs()
+
+    @State private var presentingModal = false
+    @State private var isEditMode: EditMode = .inactive
+    @State private var selBtnStr: String = "Select"
+    @State private var searchStr: String = ""
+
+    private let mAccColor = Color.orange
+
+    var body: some View {
+        NavigationView {
+            VStack {
+
+                List(selection: $jViewModel.allPageSelection) {
+                    ForEach(Array(dictJournals.keys), id: \.self) { key in
+                        Section(header: Text(getDateAsString(key))) {
+                            // If you wanted to iterate through each of the values in the keys, you can do the following: (transactionDate is the String key)
+                            ForEach(dictJournals[key]!) { moment in
+                                Button(action: { self.presentingModal = true }, label: {
+                                    HStack {
+                                        Text(moment.time)
+                                                .font(.body)
+                                                .foregroundColor(.primary)
+                                        Text(getStartingChars(written: moment.written))
+                                                .font(.body)
+                                                .foregroundColor(.secondary)
                                     }
+                                })
+                                        .sheet(isPresented: $presentingModal) {
+                                            JournalModal(oldDate: moment.date, oldTime: moment.time, oldJournal: moment.written)
+                                        }
+                            }
                         }
                     }
                 }
+                        //TODO: IMPLEMENT SEARCH FUNCTION
+                        .accentColor(mAccColor)
+                        .searchable(text: $searchStr)
+                        .listStyle(.grouped)
+                        .toolbar {
+                            ToolbarItemGroup(placement: .bottomBar) {
+                                Button(action: {
+                                    if !isEditMode.isEditing {
+                                        isEditMode = .active
+                                        selBtnStr = "Done"
+                                    } else {
+                                        isEditMode = .inactive
+                                        selBtnStr = "Select"
+                                        jViewModel.allPageSelection.removeAll()
+                                    }
+                                }, label: {
+                                    Text(selBtnStr).foregroundColor(mAccColor)
+                                })
+
+                                Menu {
+                                    Button(action: {
+                                        // TODO: IMPLEMENT MODAL THAT ADDS TO favePage
+                                        if !isEditMode.isEditing {
+                                            isEditMode = .active
+                                            selBtnStr = "Done"
+                                        } else {
+                                            isEditMode = .inactive
+                                            selBtnStr = "Select"
+                                        }
+                                    }, label: {
+                                        Image(systemName: "square.and.arrow.up").foregroundColor(mAccColor)
+                                    })
+                                } label: {
+                                    Image(systemName: "circle.grid.2x2").foregroundColor(mAccColor)
+                                }
+                                        .accentColor(mAccColor)
+                            }
+                        }
+                        .environment(\.editMode, $isEditMode)
             }
-                    .listStyle(.grouped)
-                    .toolbar {
-                        EditButton()
-                    }
-                    .environment(\.editMode, $isEditMode)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+                    .navigationBarTitle("allJourneys")
+                    .navigationBarTitleDisplayMode(.inline)
         }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-//        }
-//                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-
-
     }
 }
 

@@ -14,26 +14,20 @@ struct JournalModal: View {
             VStack {
                 Text(oldDate)
                         .font(.headline)
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color.secondary)
                         .padding(.top)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 Text(oldTime)
                         .font(.subheadline)
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color.secondary)
                         .padding(.vertical)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
             }
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
 
             ScrollView {
-                VStack {
-                    Text(oldJournal)
-                            .font(.body)
-                }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-
+                Text(oldJournal)
+                        .font(.body)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
             }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
 
         }
                 .padding(.horizontal)
