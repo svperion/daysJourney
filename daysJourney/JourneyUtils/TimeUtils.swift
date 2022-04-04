@@ -4,6 +4,8 @@
 
 import Foundation
 
+private let secInDay = 86400.0
+
 func getCurrentTime() -> DTFormats {
     getDateTimeData(date: Date())
 }
@@ -49,10 +51,8 @@ func getDateAsColTuple(dateJournal: Date) -> (dateStrArray: [String], dateStr: S
     return (dateStr.components(separatedBy: "-"), dateStr)
 }
 
-func getDateAsString(_ dateStr: String) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    let date = formatter.date(from: dateStr)!
+func getDateAsString(_ dayCountInt: Int) -> String {
+    let date = Date(timeIntervalSince1970: TimeInterval(Double(dayCountInt) * secInDay))
     return getDateAsString(date: date)
 }
 
@@ -60,6 +60,11 @@ func getDateAsHyphSep(dateJournal: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
     return formatter.string(from: dateJournal)
+}
+
+func getDateAsDayCount(date: Date) -> Int {
+    let unixDateSec = Double(date.timeIntervalSince1970)
+    return Int(unixDateSec / secInDay)
 }
 
 struct DTFormats {

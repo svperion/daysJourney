@@ -15,13 +15,13 @@ class RealmSave {
     private let mLocalRealm: Realm
     private let isMomentContinue: Bool
     private let mAllJournalTasks: Results<JournalsTask>
-    
+
     // TODO: MAKE A SEPARATE RealmWrite and RealmRead class 
 
     init() {
         isMomentContinue = !TimePass.muchTimePass()
         mLocalRealm = try! Realm(fileURL: getRealmUrl())
-        mAllJournalTasks = mLocalRealm.objects(JournalsTask.self).sorted(byKeyPath: "date", ascending: false)
+        mAllJournalTasks = mLocalRealm.objects(JournalsTask.self).sorted(byKeyPath: "dayCount", ascending: false)
     }
 
     func saveJournal(userWriting: String, startTime: Date) {
@@ -73,7 +73,6 @@ class RealmSave {
     }
 
     private func getCurrentMoment() -> MomentsTask? {
-
         if isMomentContinue {
             return getSavedMoment(dateTime: DefaultsHandler.getLastOpened())
         } else {
@@ -92,8 +91,8 @@ class RealmSave {
 
     private func getSavedJournal(date: Date) -> JournalsTask? {
         mAllJournalTasks.first {
-            // finds a journal for current day; format is yyyy-MM-dd
-            $0.date.contains(getDateAsHyphSep(dateJournal: date))
+            // finds a journal for current day; compares using unix day count
+            $0.dayCount == (getDateAsDayCount(date: date))
         }
     }
 
@@ -104,7 +103,7 @@ class RealmSave {
                 endTime: Int(endTime.timeIntervalSince1970), written: userWriting)
         momentsList.append(newMomentTask)
 
-        let journalsTask = JournalsTask(date: getDateAsHyphSep(dateJournal: startTime), momentsList: momentsList)
+        let journalsTask = JournalsTask(dayCount: getDateAsDayCount(date: startTime), momentsList: momentsList)
         try! mLocalRealm.write {
             mLocalRealm.add(journalsTask)
         }
@@ -114,11 +113,11 @@ class RealmSave {
 //
 //    }
 
-    func getAllJournalsAsTMs() -> OrderedDictionary<String, [AllDaysMenu]> {
-        var dictJournals: OrderedDictionary = OrderedDictionary<String, [AllDaysMenu]>()
+    func getAllJournalsAsTMs() -> OrderedDictionary<Int, [AllDaysMenu]> {
+        var dictJournals = OrderedDictionary<Int, [AllDaysMenu]>()
         for journalTask in mAllJournalTasks {
-            let dateStr = journalTask.date
-            dictJournals[dateStr] = getMomentsAsADArray(journalTask: journalTask)
+            let dayCount = journalTask.dayCount
+            dictJournals[dayCount] = getMomentsAsADArray(journalTask: journalTask)
         }
         return dictJournals
     }
@@ -132,9 +131,11 @@ class RealmSave {
         return todayMenus
     }
 
-    private func getMomentsAsADArray(journalTask: JournalsTask) -> [AllDaysMenu]{
+    private func getMomentsAsADArray(journalTask: JournalsTask) -> [AllDaysMenu] {
         var todayMenus = [AllDaysMenu]()
-        let allMomentTasks = journalTask.momentsTask.sorted{ $0.time > $1.time  }
+        let allMomentTasks = journalTask.momentsTask.sorted {
+            $0.time > $1.time
+        }
         for momentTask in allMomentTasks {
             todayMenus.append(getMomentAsADMenu(momentTask: momentTask))
         }
@@ -185,12 +186,12 @@ private func getRealmUrl() -> URL {
 
 
 class JournalsTask: Object {
-    @Persisted(primaryKey: true) var date: String
+    @Persisted(primaryKey: true) var dayCount: Int
     @Persisted var momentsTask: List<MomentsTask>
 
-    convenience init(date: String, momentsList: List<MomentsTask>) {
+    convenience init(dayCount: Int, momentsList: List<MomentsTask>) {
         self.init()
-        self.date = date
+        self.dayCount = dayCount
         momentsTask = momentsList
     }
 }
@@ -205,5 +206,19 @@ class MomentsTask: Object {
         self.time = time
         self.endTime = endTime
         self.written = written
+    }
+}
+
+// represents a single folder or category that the user makes to mark their journal as
+class FavesTask: Object {
+    @Persisted(primaryKey: true) var groupName: String
+    @Persisted var faveMoments: List<Object>
+
+    convenience init(groupName: String, faveMoments: List<Object>) {
+        self.init()
+//        var moments = List<Object>()
+//        moments.append(MomentsTask())
+        self.groupName = groupName
+        self.faveMoments = faveMoments
     }
 }

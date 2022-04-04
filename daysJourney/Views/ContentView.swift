@@ -158,10 +158,11 @@ struct AllPage: View {
     var body: some View {
         NavigationView {
             VStack {
-
                 List(selection: $jViewModel.allPageSelection) {
                     ForEach(Array(dictJournals.keys), id: \.self) { key in
-                        Section(header: Text(getDateAsString(key))) {
+                        Section(header: Text(getDateAsString(key))
+                                .foregroundColor(.secondary)
+                                .font(.subheadline)) {
                             // If you wanted to iterate through each of the values in the keys, you can do the following: (transactionDate is the String key)
                             ForEach(dictJournals[key]!) { moment in
                                 Button(action: { self.presentingModal = true }, label: {
@@ -179,12 +180,13 @@ struct AllPage: View {
                                         }
                             }
                         }
+                                .clipped()
                     }
                 }
                         //TODO: IMPLEMENT SEARCH FUNCTION
                         .accentColor(mAccColor)
                         .searchable(text: $searchStr)
-                        .listStyle(.grouped)
+                        .listStyle(SidebarListStyle())
                         .toolbar {
                             ToolbarItemGroup(placement: .bottomBar) {
                                 Button(action: {
@@ -199,19 +201,18 @@ struct AllPage: View {
                                 }, label: {
                                     Text(selBtnStr).foregroundColor(mAccColor)
                                 })
-
                                 Menu {
                                     Button(action: {
                                         // TODO: IMPLEMENT MODAL THAT ADDS TO favePage
-                                        if !isEditMode.isEditing {
-                                            isEditMode = .active
-                                            selBtnStr = "Done"
-                                        } else {
-                                            isEditMode = .inactive
-                                            selBtnStr = "Select"
-                                        }
                                     }, label: {
-                                        Image(systemName: "square.and.arrow.up").foregroundColor(mAccColor)
+                                        Text("Add to...")
+                                        Image(systemName: "plus.square.on.square")
+                                    })
+                                    Button(action: {
+                                        // TODO: IMPLEMENT SHARE FUNCTION
+                                    }, label: {
+                                        Text("Share")
+                                        Image(systemName: "square.and.arrow.up")
                                     })
                                 } label: {
                                     Image(systemName: "circle.grid.2x2").foregroundColor(mAccColor)

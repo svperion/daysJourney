@@ -15,6 +15,7 @@
 		AEF4438F65D7A54BCC3073B0 /* MiscFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB5A1624C7E4C4288C7 /* MiscFuncs.swift */; };
 		AEF443C3D73ACB980A0A281E /* JournalSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44242173778FDE13ED4F1 /* JournalSaver.swift */; };
 		AEF44488030C615C90107E6C /* FolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44AE4FC3B09A0D41A39C9 /* FolderManager.swift */; };
+		AEF444A40859EE651BF270E1 /* RealmWrite.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44B51797556943E526CD5 /* RealmWrite.swift */; };
 		AEF44545F4C36FDEB0BC71C7 /* DefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */; };
 		AEF445CF3B3088E94EB25894 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF4412A3FD91E9472CAE04A /* LoginView.swift */; };
 		AEF4463C3E4CB000B3FA036D /* MiscFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB5A1624C7E4C4288C7 /* MiscFuncs.swift */; };
@@ -25,6 +26,7 @@
 		AEF44A357F755DAA98CA5101 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB78A11034B67463575 /* TimeUtils.swift */; };
 		AEF44A8F21814C4CC46E6104 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44EB78A11034B67463575 /* TimeUtils.swift */; };
 		AEF44AF71CEC6D7960A40788 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF44DD18F4C2BA54E2D014A /* ContentView.swift */; };
+		AEF44BE7103788FC5CBE785A /* RealmRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF445CFEBAB4B2EBB1A75DA /* RealmRead.swift */; };
 		AEF44CDB33621B5F15C0790B /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF441E53DC14C4B0A3C1420 /* ModalView.swift */; };
 		AEF44D80ADFC31DFF009E256 /* AllPageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF446631C1C54B932E913A1 /* AllPageList.swift */; };
 		AEF44DB03C268309D81AA774 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF4412A3FD91E9472CAE04A /* LoginView.swift */; };
@@ -105,10 +107,12 @@
 		AEF441E53DC14C4B0A3C1420 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		AEF44242173778FDE13ED4F1 /* JournalSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalSaver.swift; sourceTree = "<group>"; };
 		AEF44478BD0D9793A46CA0C7 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		AEF445CFEBAB4B2EBB1A75DA /* RealmRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmRead.swift; sourceTree = "<group>"; };
 		AEF446631C1C54B932E913A1 /* AllPageList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPageList.swift; sourceTree = "<group>"; };
 		AEF449E98743FF5D6AA2A2DD /* DefaultsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsHandler.swift; sourceTree = "<group>"; };
 		AEF44AE4FC3B09A0D41A39C9 /* FolderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderManager.swift; sourceTree = "<group>"; };
 		AEF44AEF820CBFEB2B1CE684 /* RealmSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmSave.swift; sourceTree = "<group>"; };
+		AEF44B51797556943E526CD5 /* RealmWrite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmWrite.swift; sourceTree = "<group>"; };
 		AEF44D14BE670D6E32AF0E1F /* EnvObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvObject.swift; sourceTree = "<group>"; };
 		AEF44DD18F4C2BA54E2D014A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AEF44EB5A1624C7E4C4288C7 /* MiscFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscFuncs.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				AEF44242173778FDE13ED4F1 /* JournalSaver.swift */,
 				AEF44AE4FC3B09A0D41A39C9 /* FolderManager.swift */,
 				AEF44AEF820CBFEB2B1CE684 /* RealmSave.swift */,
+				AEF44B51797556943E526CD5 /* RealmWrite.swift */,
+				AEF445CFEBAB4B2EBB1A75DA /* RealmRead.swift */,
 			);
 			path = SavingUtils;
 			sourceTree = "<group>";
@@ -501,6 +507,8 @@
 				AEF443846A50CA6E5FDE09DC /* RealmSave.swift in Sources */,
 				AEF44545F4C36FDEB0BC71C7 /* DefaultsHandler.swift in Sources */,
 				AEF44D80ADFC31DFF009E256 /* AllPageList.swift in Sources */,
+				AEF444A40859EE651BF270E1 /* RealmWrite.swift in Sources */,
+				AEF44BE7103788FC5CBE785A /* RealmRead.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
